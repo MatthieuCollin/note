@@ -1,0 +1,29 @@
+.wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+table{
+    border-collapse: collapse;
+    margin: 20px;
+}
+
+tr{
+    border: 1px solid black;
+}
+
+td,th{
+    padding: 30px;
+    width: 200px;
+    text-align: center
+}
+
+.tHead{
+    border: none;
+}
+
+table tr:nth-child(2) td:nth-child(1){
+    border-radius: 0px 0px 0px 20px;   
+}
