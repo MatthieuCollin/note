@@ -1,19 +1,28 @@
 {% extends 'base.html.twig' %}
-
+        {% block stylesheets %}
+            <link rel="stylesheet" href={{asset('css/login/login.css')}}>
+        {% endblock %}
 
 {% block title %}Hello LoginController!{% endblock %}
 
 {% block body %}
 
 <div id="cadre">
-    <div id="connexion">
-    <br><br><label for="nom">nom*</label>
+    <form id="connexion">
+        <form>
+        <label for="email">
+        email
+        </label>
         <input type="text" name="email" id="email" placeholder="entrer votre email" 
         maxlength="30" size="30" required>
-        <br><br><label for="mot dee passe">mot de passe</label>
+        <label for="mot de passe">
+        mot de passe
+        </label>
         <input type="text" name="mot de passe" id="mot de passe" placeholder="entrer votre mot de passe"
         maxlength="30" size="30" required>
-    </div>
-    <input type="submit" value="se connecter">
+    </form>
+    
+    <input type="submit" value="se connecter"> 
 </div>
+
 {% endblock %}

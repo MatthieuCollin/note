@@ -1,0 +1,38 @@
+#cadre {
+    background-color: #2e77ae;
+    width: 60%;
+    height: 175px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+     
+ }
+ #connexion {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   background: #e0eaf5;
+   width: 80%;
+   height: 100px;
+   align-items: center;
+   justify-content: center;
+   margin: auto;
+ }
+
+
+input[type=submit]{
+    background: #ff8e2b;
+    color: black;
+    align-items: right;
+    margin: auto;
+ }
+
+.content{
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
