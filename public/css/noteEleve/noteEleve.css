@@ -1,0 +1,10 @@
+#cadre {
+    background-color: #2e77ae;
+    width: 60%;
+    height: 175px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+     
+ }
