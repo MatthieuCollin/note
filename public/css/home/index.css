@@ -1,6 +1,6 @@
 .cadre{
     background-color: #2E77AE;
-    width: 40%;
+    width: 45%;
     font-weight: bold;
 }
 .ligneblanche{
@@ -25,7 +25,6 @@ tr{
 
 td{
     border: 1px solid grey;
-
 }
 
 .titre{
@@ -33,9 +32,21 @@ td{
     margin-left: 10px;
 }
 .boutton{
-    align-items: right;
-    text-align: center;
-    margin-right: 15px;
+    justify-content: center;
     background-color: #FF8e2B;
     width: 20%;
+    display: flex;
+    margin-left: 77%;
+
+}
+.content{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    left: 5%;
+    right: 5%;
+    top: 22%;
+}
+body{
+    margin: auto;
 }
