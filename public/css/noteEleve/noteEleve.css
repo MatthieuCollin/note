@@ -11,23 +11,35 @@
 label{
     margin: auto;
 }
- table,tr,td
+
+table,th,td
 {
-    border: 0.25px solid black;
-    background: black;
-    margin: auto;
+  border:2px solid black;
+  margin: auto;
 }
-td{
-    background: white;
-    width: 100px;
-    height: 10px;
+table
+{
+  border-collapse:collapse;
+  width:80%;
+}
+td,th{
+    text-align: center
 }
 
-tr {
-    background: red;
-  }
-
-
+td
+{
+  height:20px;
+}
+tr:nth-child(odd)
+{
+  background-color: white;
+  color:black;
+}
+tr:nth-child(even)
+{
+  background-color: #E0EAF5;
+  color:black;
+}
 
  .content{
     height: 50%;
