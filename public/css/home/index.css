@@ -1,0 +1,41 @@
+.cadre{
+    background-color: #2E77AE;
+    width: 40%;
+    font-weight: bold;
+}
+.ligneblanche{
+    background-color:white;
+    text-align: center;
+}
+
+.lignebleu{
+    background-color: #e0eaf5;
+    text-align: center;
+}
+table{
+    width: 95%;
+    align-items: center;
+    margin: auto;
+    border-collapse: collapse;
+}
+tr{
+    height: 30px;
+    border: 1px solid grey;
+}
+
+td{
+    border: 1px solid grey;
+
+}
+
+.titre{
+    font-size: 18px;
+    margin-left: 10px;
+}
+.boutton{
+    align-items: right;
+    text-align: center;
+    margin-right: 15px;
+    background-color: #FF8e2B;
+    width: 20%;
+}
