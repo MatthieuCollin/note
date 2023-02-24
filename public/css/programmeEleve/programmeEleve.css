@@ -1,0 +1,50 @@
+#cadre {
+    background-color: #2e77ae;
+    width: 40%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+ }
+label{
+    margin: auto;
+}
+
+table,th,td
+{
+  border:2px solid black;
+  margin: auto;
+}
+table
+{
+  border-collapse:collapse;
+  width:80%;
+}
+td,th{
+    text-align: center
+}
+
+td
+{
+  height:20px;
+}
+tr:nth-child(odd)
+{
+  background-color: white;
+  color:black;
+}
+tr:nth-child(even)
+{
+  background-color: #E0EAF5;
+  color:black;
+}
+
+ .content{
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+  }
