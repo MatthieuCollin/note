@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
         {% block stylesheets %}
-            <link rel="stylesheet" href={{asset('css/noteEleve/noteEleve.css')}}>
+            <link rel="stylesheet" href={{asset('/css/noteEleve/noteEleve.css')}}>
         {% endblock %}
 {% block title %}Hello NoteEleveController!{% endblock %}
 
@@ -9,6 +9,7 @@
     <label for="vos notes">
         Vos Notes :
         </label>
+    
     <table>
         <tr>
             <td>note</td>
@@ -40,7 +41,7 @@
             <td>test</td>
             <td>test</td>
         </tr>        
-        <tr>test
+        <tr>
             <td>test</td>
             <td>test</td>
             <td>test</td>
@@ -63,6 +64,8 @@
             <td>test</td>
             <td>test</td>
             <td>test</td>
-        </tr>        
-</div>
+        </tr>
+        </table>
+
+    </div>
 {% endblock %}
