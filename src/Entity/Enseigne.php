@@ -21,6 +21,9 @@ class Enseigne
     #[ORM\OneToMany(mappedBy: 'enseigne', targetEntity: matieres::class)]
     private Collection $matiere;
 
+    #[ORM\Column]
+    private ?int $matiere_id = null;
+
     public function __construct()
     {
         $this->matiere = new ArrayCollection();
@@ -69,6 +72,18 @@ class Enseigne
                 $matiere->setEnseigne(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMatiereId(): ?int
+    {
+        return $this->matiere_id;
+    }
+
+    public function setMatiereId(int $matiere_id): self
+    {
+        $this->matiere_id = $matiere_id;
 
         return $this;
     }
