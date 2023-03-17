@@ -15,4 +15,12 @@ class AdminController extends AbstractController
             'controller_name' => 'AdminController',
         ]);
     }
+
+    #[Route('/admin-modification', name: 'app_admin')]
+    public function modifUser(): Response
+    {
+        return $this->render('admin/modification/index.html.twig', [
+            'controller_name' => 'AdminController',
+        ]);
+    }
 }
