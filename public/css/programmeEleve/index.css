@@ -37,19 +37,24 @@ td{
   display: flex;
   justify-content: space-between;
   width: 90%;
-  left: 5%;
-  right: 5%;
-  top: 22%;
 }
 .contentDeux{
   display: flex;
   justify-content: space-between;
   width: 90%;
-  left: 5%;
-  right: 5%;
-  top: 22%;
   margin: auto;
 }
 body{
   margin: auto;
+}
+
+.content{
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  position: absolute;
+  height: 100vh;
 }

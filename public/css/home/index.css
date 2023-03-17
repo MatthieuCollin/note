@@ -12,12 +12,15 @@
     background-color: #e0eaf5;
     text-align: center;
 }
+
 table{
+    margin: auto;
     width: 95%;
     align-items: center;
-    margin: auto;
     border-collapse: collapse;
 }
+
+
 tr{
     height: 30px;
     border: 1px solid grey;
@@ -31,22 +34,26 @@ td{
     font-size: 18px;
     margin-left: 10px;
 }
+
 .boutton{
     justify-content: center;
     background-color: #FF8e2B;
     width: 20%;
     display: flex;
     margin-left: 77%;
-
 }
+
 .content{
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    width: 90%;
-    left: 5%;
-    right: 5%;
-    top: 22%;
+    align-items: center;
+    width: 80%;
+    height: 100vh;
 }
+
 body{
     margin: auto;
+    display: flex;
+    justify-content: center;
 }
