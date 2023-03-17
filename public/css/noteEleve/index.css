@@ -5,15 +5,7 @@
   font-weight: bold;
   
 }
-.ligneblanche{
-  background-color:white;
-  text-align: center;
-}
 
-.lignebleu{
-  background-color: #e0eaf5;
-  text-align: center;
-}
 table{
   width: 95%;
   align-items: center;
@@ -27,6 +19,10 @@ tr{
 
 td{
   border: 1px solid grey;
+}
+
+tr:nth-child(even){
+  background-color:#E0EAF5;
 }
 
 .titre{

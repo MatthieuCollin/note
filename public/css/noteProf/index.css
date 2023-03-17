@@ -1,0 +1,42 @@
+.cadre{
+    background-color: #2E77AE;
+    width: 45%;
+    height: 340px;
+    font-weight: bold;
+    
+  }
+
+  table{
+    width: 95%;
+    align-items: center;
+    margin: auto;
+    border-collapse: collapse;
+  }
+  tr{
+    height: 30px;
+    border: 1px solid grey;
+  }
+  
+  td{
+    border: 1px solid grey;
+  }
+
+  tr:nth-child(even){
+    background-color:#E0EAF5;
+  }
+  
+  .titre{
+    font-size: 18px;
+    margin-left: 10px;
+  }
+  .content{
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    left: 5%;
+    right: 5%;
+    top: 22%;
+  }
+  body{
+    margin: auto;
+  }
