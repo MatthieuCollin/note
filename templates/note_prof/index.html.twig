@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href={{asset('/css/noteEleve/noteEleve.css')}}>
+        {% endblock %}
+{% block title %}Hello NoteEleveController!{% endblock %}
+
+{% block body %}
+<div class="content">
+    <div class="cadre">
+        <p class="titre">Mes notes :</p>
+        <table>
+            <colgroup>
+                <col span="1" style="width: 25%;">
+                <col span="1" style="width: 25%;">
+                <col span="1" style="width: 25%;">
+                <col span="1" style="width: 25%;">
+            </colgroup>
+            <tbody>
+                <tr class="ligneblanche">
+                    <td>Notes</td>
+                    <td>Moy.</td>
+                    <td>Matières</td>
+                    <td>formateurs</td>
+                </tr>
+                <tr class="lignebleu">
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                </tr>
+                <tr class="ligneblanche">
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                </tr>
+                <tr class="lignebleu">
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                </tr>
+                <tr class="ligneblanche">
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                </tr>
+                <tr class="lignebleu">
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                </tr>
+                <tr class="ligneblanche">
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                </tr>
+                <tr class="lignebleu">
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                </tr>
+                <tr class="ligneblanche">
+                    <td>test</td>
+                    <td>test</td>  
+                    <td>test</td>
+                    <td>test</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

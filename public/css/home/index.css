@@ -3,15 +3,6 @@
     width: 45%;
     font-weight: bold;
 }
-.ligneblanche{
-    background-color:white;
-    text-align: center;
-}
-
-.lignebleu{
-    background-color: #e0eaf5;
-    text-align: center;
-}
 
 table{
     margin: auto;
@@ -29,6 +20,10 @@ tr{
 td{
     border: 1px solid grey;
 }
+
+tr:nth-child(even){
+    background-color:#E0EAF5;
+  }
 
 .titre{
     font-size: 18px;

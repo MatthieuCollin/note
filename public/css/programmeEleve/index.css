@@ -26,10 +26,8 @@ td{
 }
 
 tr:nth-child(even){
-  background-color:#2E77AE;
+  background-color:#E0EAF5;
 }
-
-
 
 .titre{
   font-size: 18px;
