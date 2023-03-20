@@ -1,9 +1,11 @@
 .cadre{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   background-color: #2E77AE;
-  width: 45%;
+  width: 100%;
   height: 340px;
   font-weight: bold;
-  
 }
 
 table{
@@ -11,14 +13,15 @@ table{
   align-items: center;
   margin: auto;
   border-collapse: collapse;
+  background-color: white ;
 }
 tr{
   height: 30px;
-  border: 1px solid grey;
+  border: 1px solid black;
 }
 
 td{
-  border: 1px solid grey;
+  border: 1px solid black;
 }
 
 tr:nth-child(even){
@@ -31,9 +34,15 @@ tr:nth-child(even){
 }
 .content{
   display: flex;
+  width: 75%;
   justify-content: center;
+  align-items: center;
   height: 100vh ;
 }
+
+
 body{
   margin: auto;
+  display: flex;
+  align-items: center;
 }
