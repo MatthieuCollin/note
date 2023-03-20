@@ -14,9 +14,6 @@ class Matieres
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $idMatieres = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
@@ -25,18 +22,6 @@ class Matieres
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdMatieres(): ?string
-    {
-        return $this->idMatieres;
-    }
-
-    public function setIdMatieres(string $idMatieres): self
-    {
-        $this->idMatieres = $idMatieres;
-
-        return $this;
     }
 
     public function getNom(): ?string

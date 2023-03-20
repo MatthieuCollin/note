@@ -13,33 +13,33 @@ class Note
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $note = null;
+    #[ORM\Column]
+    private ?int $note = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $idApprenants = null;
+    private ?int $idApprenants = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $idMatieres = null;
+    #[ORM\Column]
+    private ?int $idMatieres = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNote(): ?string
+    public function getNote(): ?int
     {
         return $this->note;
     }
 
-    public function setNote(string $note): self
+    public function setNote(int $note): self
     {
         $this->note = $note;
 
         return $this;
     }
 
-    public function getIdApprenants(): ?string
+    public function getIdApprenants(): ?int
     {
         return $this->idApprenants;
     }
@@ -51,12 +51,12 @@ class Note
         return $this;
     }
 
-    public function getIdMatieres(): ?string
+    public function getIdMatieres(): ?int
     {
         return $this->idMatieres;
     }
 
-    public function setIdMatieres(string $idMatieres): self
+    public function setIdMatieres(int $idMatieres): self
     {
         $this->idMatieres = $idMatieres;
 

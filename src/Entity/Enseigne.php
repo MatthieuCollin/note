@@ -13,35 +13,35 @@ class Enseigne
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $idFormateurs = null;
+    #[ORM\Column]
+    private ?int $idFormateurs = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $idMatieres = null;
+    #[ORM\Column]
+    private ?int $idMatieres = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdFormateurs(): ?string
+    public function getIdFormateurs(): ?int
     {
         return $this->idFormateurs;
     }
 
-    public function setIdFormateurs(string $idFormateurs): self
+    public function setIdFormateurs(int $idFormateurs): self
     {
         $this->idFormateurs = $idFormateurs;
 
         return $this;
     }
 
-    public function getIdMatieres(): ?string
+    public function getIdMatieres(): ?int
     {
         return $this->idMatieres;
     }
 
-    public function setIdMatieres(string $idMatieres): self
+    public function setIdMatieres(int $idMatieres): self
     {
         $this->idMatieres = $idMatieres;
 

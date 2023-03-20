@@ -14,32 +14,17 @@ class Tuteurs
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $idTuteurs = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $idApprenants = null;
+    #[ORM\Column]
+    private ?int $idApprenants = null;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdTuteurs(): ?string
-    {
-        return $this->idTuteurs;
-    }
-
-    public function setIdTuteurs(string $idTuteurs): self
-    {
-        $this->idTuteurs = $idTuteurs;
-
-        return $this;
     }
 
     public function getNom(): ?string
@@ -66,12 +51,12 @@ class Tuteurs
         return $this;
     }
 
-    public function getIdApprenants(): ?string
+    public function getIdApprenants(): ?int
     {
         return $this->idApprenants;
     }
 
-    public function setIdApprenants(string $idApprenants): self
+    public function setIdApprenants(int $idApprenants): self
     {
         $this->idApprenants = $idApprenants;
 

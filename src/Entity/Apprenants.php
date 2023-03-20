@@ -14,29 +14,20 @@ class Apprenants
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $idApprenants = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $password = null;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdApprenants(): ?string
-    {
-        return $this->idApprenants;
-    }
-
-    public function setIdApprenants(string $idApprenants): self
-    {
-        $this->idApprenants = $idApprenants;
-
-        return $this;
     }
 
     public function getNom(): ?string
@@ -59,6 +50,30 @@ class Apprenants
     public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
 
         return $this;
     }

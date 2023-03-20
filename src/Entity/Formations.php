@@ -14,29 +14,14 @@ class Formations
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $idFormations = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $idMatieres = null;
+    #[ORM\Column]
+    private ?int $idMatieres = null;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdFormations(): ?string
-    {
-        return $this->idFormations;
-    }
-
-    public function setIdFormations(string $idFormations): self
-    {
-        $this->idFormations = $idFormations;
-
-        return $this;
     }
 
     public function getNom(): ?string
@@ -51,12 +36,12 @@ class Formations
         return $this;
     }
 
-    public function getIdMatieres(): ?string
+    public function getIdMatieres(): ?int
     {
         return $this->idMatieres;
     }
 
-    public function setIdMatieres(string $idMatieres): self
+    public function setIdMatieres(int $idMatieres): self
     {
         $this->idMatieres = $idMatieres;
 

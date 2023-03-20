@@ -14,9 +14,6 @@ class Formateurs
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $idFormateurs = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
@@ -25,18 +22,6 @@ class Formateurs
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdFormateurs(): ?string
-    {
-        return $this->idFormateurs;
-    }
-
-    public function setIdFormateurs(string $idFormateurs): self
-    {
-        $this->idFormateurs = $idFormateurs;
-
-        return $this;
     }
 
     public function getNom(): ?string

@@ -13,35 +13,35 @@ class Suivre
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $idFormations = null;
+    #[ORM\Column]
+    private ?int $idFormateurs = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $idApprenants = null;
+    #[ORM\Column]
+    private ?int $idApprenants = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdFormations(): ?string
+    public function getIdFormateurs(): ?int
     {
-        return $this->idFormations;
+        return $this->idFormateurs;
     }
 
-    public function setIdFormations(string $idFormations): self
+    public function setIdFormateurs(int $idFormateurs): self
     {
-        $this->idFormations = $idFormations;
+        $this->idFormateurs = $idFormateurs;
 
         return $this;
     }
 
-    public function getIdApprenants(): ?string
+    public function getIdApprenants(): ?int
     {
         return $this->idApprenants;
     }
 
-    public function setIdApprenants(string $idApprenants): self
+    public function setIdApprenants(int $idApprenants): self
     {
         $this->idApprenants = $idApprenants;
 
