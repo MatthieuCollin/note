@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProgrameEleveController extends AbstractController
 {
-    #[Route('/programe-eleve', name: 'app_programe_eleve')]
+    #[Route('/programme-eleve', name: 'app_programme_eleve')]
     public function index(): Response
     {
         return $this->render('programe_eleve/index.html.twig', [

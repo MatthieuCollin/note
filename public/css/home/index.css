@@ -2,6 +2,11 @@
     background-color: #2E77AE;
     width: 45%;
     font-weight: bold;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 1%;
 }
 
 table{
@@ -9,6 +14,7 @@ table{
     width: 95%;
     align-items: center;
     border-collapse: collapse;
+    background-color: white ;
 }
 
 
