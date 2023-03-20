@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\SuivreRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SuivreRepository::class)]
@@ -15,97 +13,37 @@ class Suivre
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToMany(targetEntity: formations::class, inversedBy: 'suivres')]
-    private Collection $formation;
+    #[ORM\Column(length: 255)]
+    private ?string $idFormations = null;
 
-    #[ORM\ManyToMany(targetEntity: apprenants::class, inversedBy: 'suivres')]
-    private Collection $apprenant;
-
-    #[ORM\Column]
-    private ?int $formation_id = null;
-
-    #[ORM\Column]
-    private ?int $apprenants_id = null;
-
-    public function __construct()
-    {
-        $this->formation = new ArrayCollection();
-        $this->apprenant = new ArrayCollection();
-    }
+    #[ORM\Column(length: 255)]
+    private ?string $idApprenants = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return Collection<int, formations>
-     */
-    public function getFormation(): Collection
+    public function getIdFormations(): ?string
     {
-        return $this->formation;
+        return $this->idFormations;
     }
 
-    public function addFormation(formations $formation): self
+    public function setIdFormations(string $idFormations): self
     {
-        if (!$this->formation->contains($formation)) {
-            $this->formation->add($formation);
-        }
+        $this->idFormations = $idFormations;
 
         return $this;
     }
 
-    public function removeFormation(formations $formation): self
+    public function getIdApprenants(): ?string
     {
-        $this->formation->removeElement($formation);
-
-        return $this;
+        return $this->idApprenants;
     }
 
-    /**
-     * @return Collection<int, apprenants>
-     */
-    public function getApprenant(): Collection
+    public function setIdApprenants(string $idApprenants): self
     {
-        return $this->apprenant;
-    }
-
-    public function addApprenant(apprenants $apprenant): self
-    {
-        if (!$this->apprenant->contains($apprenant)) {
-            $this->apprenant->add($apprenant);
-        }
-
-        return $this;
-    }
-
-    public function removeApprenant(apprenants $apprenant): self
-    {
-        $this->apprenant->removeElement($apprenant);
-
-        return $this;
-    }
-
-    public function getFormationId(): ?int
-    {
-        return $this->formation_id;
-    }
-
-    public function setFormationId(int $formation_id): self
-    {
-        $this->formation_id = $formation_id;
-
-        return $this;
-    }
-
-    public function getApprenantsId(): ?int
-    {
-        return $this->apprenants_id;
-    }
-
-    public function setApprenantsId(int $apprenants_id): self
-    {
-        $this->apprenants_id = $apprenants_id;
+        $this->idApprenants = $idApprenants;
 
         return $this;
     }
