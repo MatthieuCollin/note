@@ -21,6 +21,12 @@ class Suivre
     #[ORM\ManyToMany(targetEntity: apprenants::class, inversedBy: 'suivres')]
     private Collection $apprenant;
 
+    #[ORM\Column]
+    private ?int $formation_id = null;
+
+    #[ORM\Column]
+    private ?int $apprenants_id = null;
+
     public function __construct()
     {
         $this->formation = new ArrayCollection();
@@ -76,6 +82,30 @@ class Suivre
     public function removeApprenant(apprenants $apprenant): self
     {
         $this->apprenant->removeElement($apprenant);
+
+        return $this;
+    }
+
+    public function getFormationId(): ?int
+    {
+        return $this->formation_id;
+    }
+
+    public function setFormationId(int $formation_id): self
+    {
+        $this->formation_id = $formation_id;
+
+        return $this;
+    }
+
+    public function getApprenantsId(): ?int
+    {
+        return $this->apprenants_id;
+    }
+
+    public function setApprenantsId(int $apprenants_id): self
+    {
+        $this->apprenants_id = $apprenants_id;
 
         return $this;
     }
