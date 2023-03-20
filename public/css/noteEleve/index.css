@@ -32,10 +32,7 @@ tr:nth-child(even){
 .content{
   display: flex;
   justify-content: center;
-  width: 90%;
-  left: 5%;
-  right: 5%;
-  top: 22%;
+  height: 100vh ;
 }
 body{
   margin: auto;
