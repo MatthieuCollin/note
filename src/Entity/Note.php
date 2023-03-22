@@ -2,19 +2,22 @@
 
 namespace App\Entity;
 
-use App\Repository\FormationsRepository;
+use App\Repository\NoteRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: FormationsRepository::class)]
-class Formations
+#[ORM\Entity(repositoryClass: NoteRepository::class)]
+class Note
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column]
+    private ?int $note = null;
+
     #[ORM\Column(length: 255)]
-    private ?string $nom = null;
+    private ?int $idApprenants = null;
 
     #[ORM\Column]
     private ?int $idMatieres = null;
@@ -24,14 +27,26 @@ class Formations
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getNote(): ?int
     {
-        return $this->nom;
+        return $this->note;
     }
 
-    public function setNom(string $nom): self
+    public function setNote(int $note): self
     {
-        $this->nom = $nom;
+        $this->note = $note;
+
+        return $this;
+    }
+
+    public function getIdApprenants(): ?int
+    {
+        return $this->idApprenants;
+    }
+
+    public function setIdApprenants(string $idApprenants): self
+    {
+        $this->idApprenants = $idApprenants;
 
         return $this;
     }

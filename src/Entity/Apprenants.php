@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\ApprenantsRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ApprenantsRepository::class)]
@@ -21,17 +19,11 @@ class Apprenants
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
-    #[ORM\OneToMany(mappedBy: 'apprenants', targetEntity: Notes::class)]
-    private Collection $notes;
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
 
-    #[ORM\ManyToMany(targetEntity: Suivre::class, mappedBy: 'apprenant')]
-    private Collection $suivres;
-
-    public function __construct()
-    {
-        $this->notes = new ArrayCollection();
-        $this->suivres = new ArrayCollection();
-    }
+    #[ORM\Column(length: 255)]
+    private ?string $password = null;
 
     public function getId(): ?int
     {
@@ -62,59 +54,26 @@ class Apprenants
         return $this;
     }
 
-    /**
-     * @return Collection<int, Notes>
-     */
-    public function getNotes(): Collection
+    public function getEmail(): ?string
     {
-        return $this->notes;
+        return $this->email;
     }
 
-    public function addNote(Notes $note): self
+    public function setEmail(string $email): self
     {
-        if (!$this->notes->contains($note)) {
-            $this->notes->add($note);
-            $note->setApprenants($this);
-        }
+        $this->email = $email;
 
         return $this;
     }
 
-    public function removeNote(Notes $note): self
+    public function getPassword(): ?string
     {
-        if ($this->notes->removeElement($note)) {
-            // set the owning side to null (unless already changed)
-            if ($note->getApprenants() === $this) {
-                $note->setApprenants(null);
-            }
-        }
-
-        return $this;
+        return $this->password;
     }
 
-    /**
-     * @return Collection<int, Suivre>
-     */
-    public function getSuivres(): Collection
+    public function setPassword(string $password): self
     {
-        return $this->suivres;
-    }
-
-    public function addSuivre(Suivre $suivre): self
-    {
-        if (!$this->suivres->contains($suivre)) {
-            $this->suivres->add($suivre);
-            $suivre->addApprenant($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSuivre(Suivre $suivre): self
-    {
-        if ($this->suivres->removeElement($suivre)) {
-            $suivre->removeApprenant($this);
-        }
+        $this->password = $password;
 
         return $this;
     }

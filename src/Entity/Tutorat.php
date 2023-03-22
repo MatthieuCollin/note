@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\SuivreRepository;
+use App\Repository\TutoratRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: SuivreRepository::class)]
-class Suivre
+#[ORM\Entity(repositoryClass: TutoratRepository::class)]
+class Tutorat
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -14,7 +14,7 @@ class Suivre
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $idFormateurs = null;
+    private ?int $idTuteur = null;
 
     #[ORM\Column]
     private ?int $idApprenants = null;
@@ -24,14 +24,14 @@ class Suivre
         return $this->id;
     }
 
-    public function getIdFormateurs(): ?int
+    public function getIdTuteur(): ?int
     {
-        return $this->idFormateurs;
+        return $this->idTuteur;
     }
 
-    public function setIdFormateurs(int $idFormateurs): self
+    public function setIdTuteur(int $idTuteur): self
     {
-        $this->idFormateurs = $idFormateurs;
+        $this->idTuteur = $idTuteur;
 
         return $this;
     }

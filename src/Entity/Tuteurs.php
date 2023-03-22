@@ -19,6 +19,9 @@ class Tuteurs
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
+    #[ORM\Column]
+    private ?int $idApprenants = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,18 @@ class Tuteurs
     public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getIdApprenants(): ?int
+    {
+        return $this->idApprenants;
+    }
+
+    public function setIdApprenants(int $idApprenants): self
+    {
+        $this->idApprenants = $idApprenants;
 
         return $this;
     }
