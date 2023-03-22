@@ -52,3 +52,8 @@
     width: 100%;
     overflow: scroll;
   }
+
+  .submitSection{
+    width: 100%;
+    margin: 1%;
+  }

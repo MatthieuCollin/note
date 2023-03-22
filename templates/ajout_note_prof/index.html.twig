@@ -15,13 +15,18 @@
     </select>
     <input type="submit" value="chercher">
         <div class="cadre">
-                        <label for="matiére">matiére :</label>
-        <input type="text" name="matiére" maxlength="30" size="20">
+            <label for="matiere">Matière</label>
+            <select name="matiere" id="listeClasse">
+                {% set k = 10 %}
+                    {% for i in range(1, k) %}
+                        <option value={{i}}>Matière {{i}}</option>
+                    {% endfor %}
+            </select>
             <table>
                 <colgroup>
-                    <col span="1" style="width: 10%;">
-                    <col span="1" style="width: 10%;">
-                    <col span="1" style="width: 80%;">
+                    <col span="1" style="width: 20%;">
+                    <col span="1" style="width: 20%;">
+                    <col span="1" style="width: 60%;">
                 </colgroup>
                 <tbody>
                     <tr class="ligneblanche">
@@ -30,42 +35,42 @@
                         <td>élèves</td>
                     </tr>
                     <tr class="lignebleu">
-                        <td><input type="text"id="note1"></td>
+                        <td><input type="text"id="note"></td>
                         <td>test</td>
                         <td>test</td>
                     </tr>
                     <tr class="ligneblanche">
-                        <td><input type="text"id="note2"></td>
+                        <td><input type="text"id="note"></td>
                         <td>test</td>
                         <td>test</td>
                     </tr>
                     <tr class="lignebleu">
-                        <td><input type="text"id="note3"></td>
+                        <td><input type="text"id="note"></td>
                         <td>test</td>
                         <td>test</t
                     </tr>
                     <tr class="ligneblanche">
-                        <td><input type="text"id="note4"></td>
+                        <td><input type="text"id="note"></td>
                         <td>test</td>
                         <td>test</td>
                     </tr>
                     <tr class="lignebleu">
-                        <td><input type="text"id="note5"></td>
+                        <td><input type="text"id="note"></td>
                         <td>test</td>
                         <td>test</td>
                     </tr>
                     <tr class="ligneblanche">
-                        <td><input type="text"id="note6"></td>
+                        <td><input type="text"id="note"></td>
                         <td>test</td>
                         <td>test</td>
                     </tr>
                     <tr class="lignebleu">
-                        <td><input type="text"id="note7"></td>
+                        <td><input type="text"id="note"></td>
                         <td>test</td>
                         <td>test</td>
                     </tr>
                     <tr class="ligneblanche">
-                        <td><input type="text"id="note8"></td>
+                        <td><input type="text"id="note"></td>
                         <td>test</td>  
                         <td>test</td>
                     </tr>
