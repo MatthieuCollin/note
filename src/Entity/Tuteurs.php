@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TuteursRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TuteursRepository::class)]
@@ -13,52 +15,61 @@ class Tuteurs
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $nom = null;
+    #[ORM\OneToOne(inversedBy: 'tuteurs', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $prenom = null;
+    #[ORM\OneToMany(mappedBy: 'tuteurs', targetEntity: Tutorat::class)]
+    private Collection $tutorats;
 
-    #[ORM\Column]
-    private ?int $idApprenants = null;
+    public function __construct()
+    {
+        $this->tutorats = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getUser(): ?User
     {
-        return $this->nom;
+        return $this->user;
     }
 
-    public function setNom(string $nom): self
+    public function setUser(User $user): self
     {
-        $this->nom = $nom;
+        $this->user = $user;
 
         return $this;
     }
 
-    public function getPrenom(): ?string
+    /**
+     * @return Collection<int, Tutorat>
+     */
+    public function getTutorats(): Collection
     {
-        return $this->prenom;
+        return $this->tutorats;
     }
 
-    public function setPrenom(string $prenom): self
+    public function addTutorat(Tutorat $tutorat): self
     {
-        $this->prenom = $prenom;
+        if (!$this->tutorats->contains($tutorat)) {
+            $this->tutorats->add($tutorat);
+            $tutorat->setTuteurs($this);
+        }
 
         return $this;
     }
 
-    public function getIdApprenants(): ?int
+    public function removeTutorat(Tutorat $tutorat): self
     {
-        return $this->idApprenants;
-    }
-
-    public function setIdApprenants(int $idApprenants): self
-    {
-        $this->idApprenants = $idApprenants;
+        if ($this->tutorats->removeElement($tutorat)) {
+            // set the owning side to null (unless already changed)
+            if ($tutorat->getTuteurs() === $this) {
+                $tutorat->setTuteurs(null);
+            }
+        }
 
         return $this;
     }

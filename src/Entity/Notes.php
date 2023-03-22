@@ -2,28 +2,31 @@
 
 namespace App\Entity;
 
-use App\Repository\EnseigneRepository;
+use App\Repository\NotesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: EnseigneRepository::class)]
-class Enseigne
+#[ORM\Entity(repositoryClass: NotesRepository::class)]
+class Notes
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToMany(targetEntity: Formateurs::class, inversedBy: 'enseignes')]
-    private Collection $formateurs;
+    #[ORM\Column(length: 255)]
+    private ?string $note = null;
 
-    #[ORM\ManyToMany(targetEntity: Matieres::class, inversedBy: 'enseignes')]
+    #[ORM\ManyToOne(inversedBy: 'notes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Apprenants $apprenants = null;
+
+    #[ORM\ManyToMany(targetEntity: Matieres::class, inversedBy: 'notes')]
     private Collection $matieres;
 
     public function __construct()
     {
-        $this->formateurs = new ArrayCollection();
         $this->matieres = new ArrayCollection();
     }
 
@@ -32,26 +35,26 @@ class Enseigne
         return $this->id;
     }
 
-    /**
-     * @return Collection<int, Formateurs>
-     */
-    public function getFormateurs(): Collection
+    public function getNote(): ?string
     {
-        return $this->formateurs;
+        return $this->note;
     }
 
-    public function addFormateur(Formateurs $formateur): self
+    public function setNote(string $note): self
     {
-        if (!$this->formateurs->contains($formateur)) {
-            $this->formateurs->add($formateur);
-        }
+        $this->note = $note;
 
         return $this;
     }
 
-    public function removeFormateur(Formateurs $formateur): self
+    public function getApprenants(): ?Apprenants
     {
-        $this->formateurs->removeElement($formateur);
+        return $this->apprenants;
+    }
+
+    public function setApprenants(?Apprenants $apprenants): self
+    {
+        $this->apprenants = $apprenants;
 
         return $this;
     }

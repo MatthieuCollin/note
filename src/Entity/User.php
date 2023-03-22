@@ -28,6 +28,15 @@ class User
     #[ORM\Column(length: 255)]
     private ?string $role = null;
 
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Apprenants $apprenants = null;
+
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Formateurs $formateurs = null;
+
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Tuteurs $tuteurs = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +98,57 @@ class User
     public function setRole(string $role): self
     {
         $this->role = $role;
+
+        return $this;
+    }
+
+    public function getApprenants(): ?Apprenants
+    {
+        return $this->apprenants;
+    }
+
+    public function setApprenants(Apprenants $apprenants): self
+    {
+        // set the owning side of the relation if necessary
+        if ($apprenants->getUser() !== $this) {
+            $apprenants->setUser($this);
+        }
+
+        $this->apprenants = $apprenants;
+
+        return $this;
+    }
+
+    public function getFormateurs(): ?Formateurs
+    {
+        return $this->formateurs;
+    }
+
+    public function setFormateurs(Formateurs $formateurs): self
+    {
+        // set the owning side of the relation if necessary
+        if ($formateurs->getUser() !== $this) {
+            $formateurs->setUser($this);
+        }
+
+        $this->formateurs = $formateurs;
+
+        return $this;
+    }
+
+    public function getTuteurs(): ?Tuteurs
+    {
+        return $this->tuteurs;
+    }
+
+    public function setTuteurs(Tuteurs $tuteurs): self
+    {
+        // set the owning side of the relation if necessary
+        if ($tuteurs->getUser() !== $this) {
+            $tuteurs->setUser($this);
+        }
+
+        $this->tuteurs = $tuteurs;
 
         return $this;
     }
