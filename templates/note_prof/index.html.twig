@@ -6,73 +6,73 @@
 
 {% block body %}
 <div class="content">
-    
-    <div class="cadre">
-        <p class="titre">Mes notes :</p>
-        <table>
-            <colgroup>
-                <col span="1" style="width: 25%;">
-                <col span="1" style="width: 25%;">
-                <col span="1" style="width: 25%;">
-                <col span="1" style="width: 25%;">
-            </colgroup>
-            <tbody>
-                <tr class="ligneblanche">
-                    <td>Notes</td>
-                    <td>Moy.</td>
-                    <td>Matières</td>
-                    <td>formateurs</td>
-                </tr>
-                <tr class="lignebleu">
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="ligneblanche">
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="lignebleu">
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="ligneblanche">
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="lignebleu">
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="ligneblanche">
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="lignebleu">
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="ligneblanche">
-                    <td>test</td>
-                    <td>test</td>  
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<form method="post" action="">
+    <select id="listeClasse">
+        {% set k = 10 %}
+            {% for i in range(1, k) %}
+                <option value={{i}}>{{i}}</option>
+            {% endfor %}
+    </select>
+    <input type="submit" value="chercher">
+        <div class="cadre">
+                        <label for="matiére">matiére :</label>
+        <input type="text" name="matiére" maxlength="30" size="20">
+            <table>
+                <colgroup>
+                    <col span="1" style="width: 10%;">
+                    <col span="1" style="width: 10%;">
+                    <col span="1" style="width: 80%;">
+                </colgroup>
+                <tbody>
+                    <tr class="ligneblanche">
+                        <td>Notes</td>
+                        <td>Moy.</td>
+                        <td>élèves</td>
+                    </tr>
+                    <tr class="lignebleu">
+                        <td><input type="text"id="note1"></td>
+                        <td>test</td>
+                        <td>test</td>
+                    </tr>
+                    <tr class="ligneblanche">
+                        <td><input type="text"id="note2"></td>
+                        <td>test</td>
+                        <td>test</td>
+                    </tr>
+                    <tr class="lignebleu">
+                        <td><input type="text"id="note3"></td>
+                        <td>test</td>
+                        <td>test</t
+                    </tr>
+                    <tr class="ligneblanche">
+                        <td><input type="text"id="note4"></td>
+                        <td>test</td>
+                        <td>test</td>
+                    </tr>
+                    <tr class="lignebleu">
+                        <td><input type="text"id="note5"></td>
+                        <td>test</td>
+                        <td>test</td>
+                    </tr>
+                    <tr class="ligneblanche">
+                        <td><input type="text"id="note6"></td>
+                        <td>test</td>
+                        <td>test</td>
+                    </tr>
+                    <tr class="lignebleu">
+                        <td><input type="text"id="note7"></td>
+                        <td>test</td>
+                        <td>test</td>
+                    </tr>
+                    <tr class="ligneblanche">
+                        <td><input type="text"id="note8"></td>
+                        <td>test</td>  
+                        <td>test</td>
+                    </tr>
+                </tbody>
+            </table>
+            <input type="submit" value="valider">
+            </form>
+        </div>
 </div>
 {% endblock %}
