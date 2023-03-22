@@ -1,22 +1,21 @@
 .cadre{
     background-color: #2E77AE;
-    width: 100%;
+    width: 40%;
     height: 340px;
     font-weight: bold;
     display: flex;
-    align-items: center;
     flex-direction: column;
-    
+    align-items: center;
+    margin-bottom: 1%;
   }
-
+  
   table{
     width: 95%;
-    align-items: center;
-    margin: auto;
-    background-color: white;
     border-collapse: collapse;
+    background-color: white;
+    border: 2px solid black;
   }
-
+  
   tr{
     height: 30px;
     border: 1px solid grey;
@@ -25,7 +24,7 @@
   td{
     border: 1px solid grey;
   }
-
+  
   tr:nth-child(even){
     background-color:#E0EAF5;
   }
@@ -35,34 +34,21 @@
     margin-left: 10px;
   }
 
-  input[type="submit"]{
+  .boutton{
     justify-content: center;
     background-color: #FF8e2B;
     width: 20%;
     display: flex;
     margin-left: 60%;
 }
-
-  .content{
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    height: 100vh ;
-  }
   
-  body{
-    border: 1px solid black;
-    width: 100%;
-    margin: auto;
+  .content{
+    margin: 1%;
     display: flex;
+    flex-direction: row;
     align-items: center;
-  }
-
-  form{
-    width: 70%;
-  }
-
-  .note{
-    width: 10px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+    overflow: scroll;
   }
