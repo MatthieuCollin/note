@@ -13,37 +13,22 @@ class Formateurs
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $nom = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $prenom = null;
+    #[ORM\Column]
+    private ?int $idUser = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getIdUser(): ?int
     {
-        return $this->nom;
+        return $this->idUser;
     }
 
-    public function setNom(string $nom): self
+    public function setIdUser(int $idUser): self
     {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(string $prenom): self
-    {
-        $this->prenom = $prenom;
+        $this->idUser = $idUser;
 
         return $this;
     }
