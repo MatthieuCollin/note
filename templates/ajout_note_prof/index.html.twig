@@ -1,12 +1,11 @@
 {% extends 'base.html.twig' %}
         {% block stylesheets %}
-            <link rel="stylesheet" href={{asset('/css/noteProf/index.css')}}>
+            <link rel="stylesheet" href={{asset('/css/ajoutNoteProf/index.css')}}>
         {% endblock %}
 {% block title %}Hello NoteEleveController!{% endblock %}
 
 {% block body %}
 <div class="content">
-<<<<<<< HEAD
 <form method="post" action="">
     <select id="listeClasse">
         {% set k = 10 %}
@@ -75,75 +74,5 @@
             <input type="submit" value="valider">
             </form>
         </div>
-=======
-    
-    <div class="cadre">
-        <p class="titre">Mes notes :</p>
-        <table>
-            <colgroup>
-                <col span="1" style="width: 25%;">
-                <col span="1" style="width: 25%;">
-                <col span="1" style="width: 25%;">
-                <col span="1" style="width: 25%;">
-            </colgroup>
-            <tbody>
-                <tr class="ligneblanche">
-                    <td>Notes</td>
-                    <td>Moy.</td>
-                    <td>Matières</td>
-                    <td>formateurs</td>
-                </tr>
-                <tr class="lignebleu">
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>css
-                    <td>test</td>
-                </tr>
-                <tr class="ligneblanche">
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="lignebleu">
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="ligneblanche">
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="lignebleu">
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="ligneblanche">
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="lignebleu">
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="ligneblanche">
-                    <td>test</td>
-                    <td>test</td>  
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
->>>>>>> 8eabf73e38279782d086c7a1df9d301deb07d360
 </div>
 {% endblock %}
