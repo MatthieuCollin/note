@@ -1,21 +1,24 @@
-#cadre {
+body{
+  height: 100vh;
+}
+
+.cadre {
   background-color: #2e77ae;
   width: 60%;
-  height: 175px;
+  height: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
     
 }
-#connexion {
+.connexion {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background: #e0eaf5;
   width: 80%;
-  height: 100px;
   align-items: center;
   justify-content: center;
   margin: auto;

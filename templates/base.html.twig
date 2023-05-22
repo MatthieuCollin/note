@@ -19,16 +19,31 @@
         <header>
             <nav>
                 <img src={{asset('img/logo.png')}} alt="logo">
-
-                <div class="bouttonFooter">
-                    <a href={{path('app_home')}}>Accueil</a>
-                </div>
-                <div class="bouttonFooter">
-                    <a href={{path('app_programme_eleve')}}>Programmes</a>
-                </div>
-                <div class="bouttonFooter">
-                    <a href={{path('app_note_eleve')}}>Notes</a>
-                </div>
+                {% if app.user.roles|first == "ROLE_ELEVE" or app.user.roles|first == "ROLE_TUTEUR"%}
+                    <div class="bouttonFooter">
+                        <a href={{path('app_home')}}>Accueil</a>
+                    </div>
+                    <div class="bouttonFooter">
+                        <a href={{path('app_programme_eleve')}}>Programmes</a>
+                    </div>
+                    <div class="bouttonFooter">
+                        <a href={{path('app_note_eleve')}}>Notes</a>
+                    </div>
+                {% elseif app.user.roles|first == "ROLE_FORMATEUR"%}
+                    <div class="bouttonFooter">
+                        <a href={{path('app_home')}}>Accueil</a>
+                    </div>
+                    <div class="bouttonFooter">
+                        <a href={{path('app_programme_prof')}}>Programmes</a>
+                    </div>
+                    <div class="bouttonFooter">
+                        <a href={{path('app_note_prof')}}>Notes</a>
+                    </div>
+                {% elseif app.user.roles|first == "ROLE_ADMIN"%}
+                    <div class="bouttonFooter">
+                        <a href={{path('app_admin')}}>Admin</a>
+                    </div>
+                {% endif %}
             </nav>
         </header>
         <div class="content">

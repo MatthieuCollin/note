@@ -11,15 +11,15 @@ class ProgrameEleveController extends AbstractController
     #[Route('/programme-eleve', name: 'app_programme_eleve')]
     public function index(): Response
     {
-        return $this->render('programe_eleve/index.html.twig', [
+        return $this->render('programme/programe_eleve/index.html.twig', [
             'controller_name' => 'ProgrameEleveController',
         ]);
     }
 
-    #[Route('/programme-Prof', name: 'app_programme_prof')]
+    #[Route('/programme-prof', name: 'app_programme_prof')]
     public function programmeProf(): Response
     {
-        return $this->render('programe_Prof/index.html.twig', [
+        return $this->render('programme/programe_eleve/index.html.twig', [
             'controller_name' => 'ProgrameEleveController',
         ]);
     }
