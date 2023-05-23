@@ -15,8 +15,8 @@
                 <label for="">Utilisateur :
                     <select id="listeClasse">
                         {% set k = 10 %}
-                        {% for i in range(1, k) %}
-                            <option value={{i}}>Utilisateur{{i}}</option>
+                        {% for user in users %}
+                            <option value={{user.id}}>{{user.firstname}} {{user.lastname}}</option>
                         {% endfor %}
                     </select>
                 </label>

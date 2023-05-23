@@ -16,10 +16,14 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class AdminController extends AbstractController
 {
     #[Route('/admin', name: 'app_admin')]
-    public function index(): Response
+    public function index(EntityManagerInterface $entityManager): Response
     {
+        $userRepository = $entityManager->getRepository(User::class);
+        $users = $userRepository->findAll();
+
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
+            'users' => $users
         ]);
     }
 
@@ -34,6 +38,8 @@ class AdminController extends AbstractController
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
+        $userRepository = $entityManager->getRepository(User::class);
+        $users = $userRepository->findAll();
 
         // si le form est valide
         if ($form->isSubmitted() && $form->isValid()) {
@@ -50,12 +56,13 @@ class AdminController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
             
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_admin');
         }
 
         return $this->render('admin/modification/index.html.twig', [
             'controller_name' => 'AdminController',
             'form' => $form,
+            'users' => $users
         ]);
     }
 }

@@ -7,53 +7,23 @@
 
 {% block body %}
     <h1>Gestion :</h1>
-
+<a href={{path('app_admin-modif')}}>Ajouter Admin</a>
 <div class="wrapper">
-
-
     <table>
         <tr class="tHead">
             <th>Prénom</th>
             <th>Nom</th>
             <th>Mail</th>
             <th>Rôles</th>
-            <th>Action</th>
         </tr>
-        <tr class="first">
-            <td>Matthieu</td>
-            <td>Collin</td>
-            <td>matthcollin23@gmail.com</td>
-            <td>gestionnaire</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Matthieu</td>
-            <td>Collin</td>
-            <td>matthcollin23@gmail.com</td>
-            <td>gestionnaire</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Matthieu</td>
-            <td>Collin</td>
-            <td>matthcollin23@gmail.com</td>
-            <td>gestionnaire</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Matthieu</td>
-            <td>Collin</td>
-            <td>matthcollin23@gmail.com</td>
-            <td>gestionnaire</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Matthieu</td>
-            <td>Collin</td>
-            <td>matthcollin23@gmail.com</td>
-            <td>gestionnaire</td>
-            <td></td>
-        </tr>
+        {% for user in users %}
+            <tr>
+                <td>{{user.firstname}}</td>
+                <td>{{user.lastname}}</td>
+                <td>{{user.email}}</td>---
+                <td>{{user.roles|first}}</td>
+            </tr>
+        {% endfor %}
     </table>
 </div>
 {% endblock %}
