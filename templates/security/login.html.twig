@@ -6,35 +6,50 @@
 {% endblock %}
 
 {% block body %}
- {# <div class="cadre">
-    <form class="connexion" method="post">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
-
-        {% if app.user %}
-            <div class="mb-3">
-                Vous êtes connecté en tant que{{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-            </div>
-        {% endif %}
-
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="inputEmail">Email</label>
-        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-        <label for="inputPassword">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-        <input type="hidden" name="_csrf_token"
-            value="{{ csrf_token('authenticate') }}" 
-        >
-
-        <button class="btn btn-lg btn-primary" type="submit">
-            Sign in
-        </button>
-    </form>
-</div>  #}
-
 <div class="container">
+	<div class="screen">
+		<div class="screen__content">
+			<form class="login" method="post">
+				{% if error %}
+					<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+				{% endif %}
+
+				{% if app.user %}
+					<div class="mb-3">
+						Vous êtes connecté en tant que{{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+					</div>
+				{% endif %}
+
+				<h1 class="h3 mb-3 font-weight-normal">Se connecter</h1>
+				<div class="login__field">
+					<label for="inputEmail">Email</label>
+					<br>
+					<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control login__input" autocomplete="email" required autofocus>
+				</div>
+				<div class="login__field">
+					<label for="inputPassword">Mot de passe</label>
+					<input type="password" name="password" id="inputPassword" class="form-control login__input"  autocomplete="current-password" required>
+				</div>
+				
+				<input type="hidden" name="_csrf_token"
+					value="{{ csrf_token('authenticate') }}" 
+				>
+
+				<button class="button login__submit btn btn-lg btn-primary" type="submit">
+					Se connecter
+				</button>
+			</form>
+		</div>
+		<div class="screen__background">
+			<span class="screen__background__shape screen__background__shape4"></span>
+			<span class="screen__background__shape screen__background__shape3"></span>		
+			<span class="screen__background__shape screen__background__shape2"></span>
+			<span class="screen__background__shape screen__background__shape1"></span>
+		</div>		
+	</div> 
+</div>
+
+{# <div class="container">
 	<div class="screen">
 		<div class="screen__content">
 			<form class="login" method="post">
@@ -49,11 +64,11 @@
             {% endif %}
 				<div class="login__field">
 					<i class="login__icon fas fa-user"></i>
-					<input type="email" value="{{ last_username }}" name="email" class="login__input" placeholder="Email" autocomplete="email" required autofocus>
+					<input type="email" id="inputEmail" value="{{ last_username }}" name="email" class="login__input" placeholder="Email" autocomplete="email" required autofocus>
 				</div>
 				<div class="login__field">
 					<i class="login__icon fas fa-lock"></i>
-					<input type="password" name"password" class="login__input" placeholder="Mot de passe" autocomplete="current-password" required>
+					<input type="password" id="inputPassword" name"password" class="login__input" placeholder="Mot de passe" autocomplete="current-password" required>
 				</div>
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
 				<button class="button login__submit" type"submit">
@@ -77,5 +92,5 @@
 			<span class="screen__background__shape screen__background__shape1"></span>
 		</div>		
 	</div>
-</div>
+</div> #}
 {% endblock %}
