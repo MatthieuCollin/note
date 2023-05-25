@@ -48,49 +48,4 @@
 		</div>		
 	</div> 
 </div>
-
-{# <div class="container">
-	<div class="screen">
-		<div class="screen__content">
-			<form class="login" method="post">
-            {% if error %}
-                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
-
-            {% if app.user %}
-                <div class="mb-3">
-                    Vous êtes connecté en tant que{{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-                </div>
-            {% endif %}
-				<div class="login__field">
-					<i class="login__icon fas fa-user"></i>
-					<input type="email" id="inputEmail" value="{{ last_username }}" name="email" class="login__input" placeholder="Email" autocomplete="email" required autofocus>
-				</div>
-				<div class="login__field">
-					<i class="login__icon fas fa-lock"></i>
-					<input type="password" id="inputPassword" name"password" class="login__input" placeholder="Mot de passe" autocomplete="current-password" required>
-				</div>
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
-				<button class="button login__submit" type"submit">
-					<span class="button__text">Se connecter</span>
-					<i class="button__icon fas fa-chevron-right"></i>
-				</button>				
-			</form>
-			<div class="social-login">
-				<h3>Formatech</h3>
-				<div class="social-icons">
-					<a href="#" class="social-login__icon fab fa-instagram"></a>
-					<a href="#" class="social-login__icon fab fa-facebook"></a>
-					<a href="#" class="social-login__icon fab fa-twitter"></a>
-				</div>
-			</div>
-		</div>
-		<div class="screen__background">
-			<span class="screen__background__shape screen__background__shape4"></span>
-			<span class="screen__background__shape screen__background__shape3"></span>		
-			<span class="screen__background__shape screen__background__shape2"></span>
-			<span class="screen__background__shape screen__background__shape1"></span>
-		</div>		
-	</div>
-</div> #}
 {% endblock %}

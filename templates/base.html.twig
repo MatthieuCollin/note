@@ -9,7 +9,7 @@
 
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-        {% endblock %}
+        {% endblock %} 
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
@@ -20,38 +20,18 @@
             <nav>
                 <img src={{asset('img/logo.png')}} alt="logo">
                 {% if app.user.roles|first == "ROLE_ELEVE" or app.user.roles|first == "ROLE_TUTEUR"%}
-                    <div class="bouttonFooter">
-                        <a href={{path('app_home')}}>Accueil</a>
-                    </div>
-                    <div class="bouttonFooter">
-                        <a href={{path('app_programme_eleve')}}>Programmes</a>
-                    </div>
-                    <div class="bouttonFooter">
-                        <a href={{path('app_note_eleve')}}>Notes</a>
-                    </div>
+                    <a class="underline" href={{path('app_home')}}>Accueil</a>
+                    <a class="underline" href={{path('app_programme_eleve')}}>Programmes</a>
+                    <a class="underline" href={{path('app_note_eleve')}}>Notes</a>
                 {% elseif app.user.roles|first == "ROLE_FORMATEUR"%}
-                    <div class="bouttonFooter">
-                        <a href={{path('app_home')}}>Accueil</a>
-                    </div>
-                    <div class="bouttonFooter">
-                        <a href={{path('app_programme_prof')}}>Programmes</a>
-                    </div>
-                    <div class="bouttonFooter">
-                        <a href={{path('app_note_prof')}}>Notes</a>
-                    </div>
+                    <a class="underline" href={{path('app_home')}}>Accueil</a>
+                    <a class="underline" href={{path('app_programme_prof')}}>Programmes</a>
+                    <a class="underline" href={{path('app_note_prof')}}>Notes</a>
                 {% elseif app.user.roles|first == "ROLE_ADMIN"%}
-                    <div class="bouttonFooter">
-                        <a href={{path('app_home')}}>Accueil</a>
-                    </div>
-                    <div class="bouttonFooter">
-                        <a href={{path('app_admin')}}>Admin</a>
-                    </div>
-                    <div class="bouttonFooter">
-                        <a href={{path('app_ajout_classe_index')}}>Classe</a>
-                    </div>
-                    <div class="bouttonFooter">
-                        <a href={{path('app_ajout_matiere_index')}}>Matiere</a>
-                    </div>
+                    <a class="underline" href={{path('app_home')}}>Accueil</a>
+                    <a class="underline" href={{path('app_admin')}}>Admin</a>
+                    <a class="underline" href={{path('app_ajout_classe_index')}}>Classe</a>
+                    <a class="underline" href={{path('app_ajout_matiere_index')}}>Matiere</a>
                 {% endif %}
             </nav>
         </header>
@@ -61,14 +41,12 @@
             {% endblock %}
         </div>
         <footer>
-                <ul>
-                    <li><a href="">Accueil</a></li>
-                    <li><a href="">Programmes</a></li>
-                    <li><a href="">Notes</a></li>
-                </ul>
-
-            <img src={{asset('img/logo.png')}} alt="logo">
-            <div></div>
+            <div class="parent">
+                <a class="div1" href="">Accueil</a>
+                <a class="div2" href="">Programmes</a>
+                <a class="div3" href="">Notes</a>
+                <div class="div4">Copyright by La Team</div>
+            </div>
         </footer>
     </body>
 </html>
