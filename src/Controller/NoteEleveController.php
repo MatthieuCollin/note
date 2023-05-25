@@ -16,18 +16,10 @@ class NoteEleveController extends AbstractController
         ]);
     }
 
-    #[Route('/ajout-note-prof', name: 'app_ajout_note_prof')]
-    public function ajoutNoteProf(): Response
-    {
-        return $this->render('note/ajout_note_prof/index.html.twig', [
-            'controller_name' => 'NoteEleveController',
-        ]);
-    }
-
     #[Route('/note-prof', name: 'app_note_prof')]
     public function noteProf(): Response
     {
-        return $this->render('note/note_prof/index.html.twig', [
+        return $this->render('note/note-prof/index.html.twig', [
             'controller_name' => 'NoteEleveController',
         ]);
     }
