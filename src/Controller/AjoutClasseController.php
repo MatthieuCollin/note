@@ -48,6 +48,7 @@ class AjoutClasseController extends AbstractController
     {
         return $this->render('ajout_classe/show.html.twig', [
             'classe' => $classe,
+            'eleves' => $classe->getEleve()
         ]);
     }
 

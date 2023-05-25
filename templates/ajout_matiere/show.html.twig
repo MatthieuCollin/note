@@ -15,6 +15,12 @@
                 <th>Name</th>
                 <td>{{ matiere.name }}</td>
             </tr>
+            <tr>
+                <th>Formateurs</th>
+                {% for formateur in formateurs%}
+                <td>{{ formateur.lastname }}</td>
+                {% endfor %}
+            </tr>
         </tbody>
     </table>
 

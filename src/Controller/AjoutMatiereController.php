@@ -43,8 +43,11 @@ class AjoutMatiereController extends AbstractController
     #[Route('/{id}', name: 'app_ajout_matiere_show', methods: ['GET'])]
     public function show(Matiere $matiere): Response
     {
+
+
         return $this->render('ajout_matiere/show.html.twig', [
             'matiere' => $matiere,
+            'formateurs' => $matiere->getFormateur()
         ]);
     }
 
