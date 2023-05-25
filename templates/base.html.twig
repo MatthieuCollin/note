@@ -41,6 +41,9 @@
                     </div>
                 {% elseif app.user.roles|first == "ROLE_ADMIN"%}
                     <div class="bouttonFooter">
+                        <a href={{path('app_home')}}>Accueil</a>
+                    </div>
+                    <div class="bouttonFooter">
                         <a href={{path('app_admin')}}>Admin</a>
                     </div>
                 {% endif %}

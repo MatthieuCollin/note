@@ -2,26 +2,25 @@
 
 namespace App\Form;
 
-use App\Entity\Notes;
+use App\Entity\Matiere;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class NoteType extends AbstractType
+class MatiereType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('note')
-            ->add('apprenants')
-            ->add('matieres')
+            ->add('name')
+            ->add('formateur')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Notes::class,
+            'data_class' => Matiere::class,
         ]);
     }
 }

@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Matieres;
+use App\Entity\Matiere;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Matieres>
+ * @extends ServiceEntityRepository<Matiere>
  *
- * @method Matieres|null find($id, $lockMode = null, $lockVersion = null)
- * @method Matieres|null findOneBy(array $criteria, array $orderBy = null)
- * @method Matieres[]    findAll()
- * @method Matieres[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Matiere|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Matiere|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Matiere[]    findAll()
+ * @method Matiere[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class MatieresRepository extends ServiceEntityRepository
+class MatiereRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Matieres::class);
+        parent::__construct($registry, Matiere::class);
     }
 
-    public function save(Matieres $entity, bool $flush = false): void
+    public function save(Matiere $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class MatieresRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Matieres $entity, bool $flush = false): void
+    public function remove(Matiere $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class MatieresRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Matieres[] Returns an array of Matieres objects
+//     * @return Matiere[] Returns an array of Matiere objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class MatieresRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Matieres
+//    public function findOneBySomeField($value): ?Matiere
 //    {
 //        return $this->createQueryBuilder('m')
 //            ->andWhere('m.exampleField = :val')
