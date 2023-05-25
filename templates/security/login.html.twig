@@ -1,12 +1,12 @@
 
-{% block title %}Log in!{% endblock %}
+{% block title %}{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href={{asset('/css/login/index.css')}}>
 {% endblock %}
 
 {% block body %}
-<div class="cadre">
+ {# <div class="cadre">
     <form class="connexion" method="post">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -14,7 +14,7 @@
 
         {% if app.user %}
             <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                Vous êtes connecté en tant que{{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
             </div>
         {% endif %}
 
@@ -25,23 +25,57 @@
         <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
         <input type="hidden" name="_csrf_token"
-            value="{{ csrf_token('authenticate') }}"
+            value="{{ csrf_token('authenticate') }}" 
         >
-
-        {#
-            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-            See https://symfony.com/doc/current/security/remember_me.html
-
-            <div class="checkbox mb-3">
-                <label>
-                    <input type="checkbox" name="_remember_me"> Remember me
-                </label>
-            </div>
-        #}
 
         <button class="btn btn-lg btn-primary" type="submit">
             Sign in
         </button>
     </form>
+</div>  #}
+
+<div class="container">
+	<div class="screen">
+		<div class="screen__content">
+			<form class="login" method="post">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            {% if app.user %}
+                <div class="mb-3">
+                    Vous êtes connecté en tant que{{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% endif %}
+				<div class="login__field">
+					<i class="login__icon fas fa-user"></i>
+					<input type="email" value="{{ last_username }}" name="email" class="login__input" placeholder="Email" autocomplete="email" required autofocus>
+				</div>
+				<div class="login__field">
+					<i class="login__icon fas fa-lock"></i>
+					<input type="password" name"password" class="login__input" placeholder="Mot de passe" autocomplete="current-password" required>
+				</div>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
+				<button class="button login__submit" type"submit">
+					<span class="button__text">Se connecter</span>
+					<i class="button__icon fas fa-chevron-right"></i>
+				</button>				
+			</form>
+			<div class="social-login">
+				<h3>Formatech</h3>
+				<div class="social-icons">
+					<a href="#" class="social-login__icon fab fa-instagram"></a>
+					<a href="#" class="social-login__icon fab fa-facebook"></a>
+					<a href="#" class="social-login__icon fab fa-twitter"></a>
+				</div>
+			</div>
+		</div>
+		<div class="screen__background">
+			<span class="screen__background__shape screen__background__shape4"></span>
+			<span class="screen__background__shape screen__background__shape3"></span>		
+			<span class="screen__background__shape screen__background__shape2"></span>
+			<span class="screen__background__shape screen__background__shape1"></span>
+		</div>		
+	</div>
 </div>
 {% endblock %}
