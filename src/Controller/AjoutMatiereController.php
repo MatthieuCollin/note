@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Matiere;
 use App\Form\MatiereType;
 use App\Repository\MatiereRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,8 +28,16 @@ class AjoutMatiereController extends AbstractController
         $matiere = new Matiere();
         $form = $this->createForm(MatiereType::class, $matiere);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $data = $form->get('formateur')->getData();
+
+            foreach($data as $user){
+    
+                $user->setMatiere($matiere);
+            }
+    
             $matiereRepository->save($matiere, true);
 
             return $this->redirectToRoute('app_ajout_matiere_index', [], Response::HTTP_SEE_OTHER);
@@ -41,13 +50,15 @@ class AjoutMatiereController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_ajout_matiere_show', methods: ['GET'])]
-    public function show(Matiere $matiere): Response
+    public function show(Matiere $matiere,UserRepository $userRepository, $id): Response
     {
+        $users = $userRepository->findBy(array('matiere'=>$id));
 
 
         return $this->render('ajout_matiere/show.html.twig', [
             'matiere' => $matiere,
-            'formateurs' => $matiere->getFormateur()
+            'formateurs'=> $users,
+            'classes' => $matiere->getClasse()
         ]);
     }
 
@@ -58,6 +69,14 @@ class AjoutMatiereController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $data = $form->get('formateur')->getData();
+
+            foreach($data as $user){
+    
+                $user->setMatiere($matiere);
+            }
+            
             $matiereRepository->save($matiere, true);
 
             return $this->redirectToRoute('app_ajout_matiere_index', [], Response::HTTP_SEE_OTHER);

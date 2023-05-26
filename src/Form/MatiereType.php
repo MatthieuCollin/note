@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Classe;
 use App\Entity\User;
 use App\Entity\Matiere;
 use Symfony\Component\Form\AbstractType;
@@ -21,6 +22,18 @@ class MatiereType extends AbstractType
             
                 // uses the User.username property as the visible option string
                 'choice_label' => 'lastname',
+                'mapped' =>false,
+
+                // used to render a select box, check boxes or radios
+                'multiple' => true,
+                'expanded' => false,
+            ])
+            ->add('classe', EntityType::class, [
+                // looks for choices from this entity
+                'class' => Classe::class,
+            
+                // uses the User.username property as the visible option string
+                'choice_label' => 'name',
             
                 // used to render a select box, check boxes or radios
                 'multiple' => true,

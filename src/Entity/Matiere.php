@@ -21,17 +21,21 @@ class Matiere
     #[ORM\OneToMany(mappedBy: 'matiere', targetEntity: Controle::class)]
     private Collection $controles;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'matieres')]
-    private Collection $formateur;
-
     #[ORM\OneToMany(mappedBy: 'matiere', targetEntity: Programme::class)]
     private Collection $programmes;
+
+    #[ORM\ManyToMany(targetEntity: Classe::class, inversedBy: 'matieres')]
+    private Collection $classe;
+
+    #[ORM\OneToMany(mappedBy: 'matiere', targetEntity: User::class)]
+    private Collection $users;
 
     public function __construct()
     {
         $this->controles = new ArrayCollection();
-        $this->formateur = new ArrayCollection();
         $this->programmes = new ArrayCollection();
+        $this->classe = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -82,30 +86,6 @@ class Matiere
     }
 
     /**
-     * @return Collection<int, User>
-     */
-    public function getFormateur(): Collection
-    {
-        return $this->formateur;
-    }
-
-    public function addFormateur(User $formateur): self
-    {
-        if (!$this->formateur->contains($formateur)) {
-            $this->formateur->add($formateur);
-        }
-
-        return $this;
-    }
-
-    public function removeFormateur(User $formateur): self
-    {
-        $this->formateur->removeElement($formateur);
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Programme>
      */
     public function getProgrammes(): Collection
@@ -129,6 +109,60 @@ class Matiere
             // set the owning side to null (unless already changed)
             if ($programme->getMatiere() === $this) {
                 $programme->setMatiere(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Classe>
+     */
+    public function getClasse(): Collection
+    {
+        return $this->classe;
+    }
+
+    public function addClasse(Classe $classe): self
+    {
+        if (!$this->classe->contains($classe)) {
+            $this->classe->add($classe);
+        }
+
+        return $this;
+    }
+
+    public function removeClasse(Classe $classe): self
+    {
+        $this->classe->removeElement($classe);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->setMatiere($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getMatiere() === $this) {
+                $user->setMatiere(null);
             }
         }
 

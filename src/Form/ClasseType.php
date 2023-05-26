@@ -19,7 +19,7 @@ class ClasseType extends AbstractType
             ->add('eleve', EntityType::class, [
                 // looks for choices from this entity
                 'class' => User::class,
-            
+                'mapped' =>false,
                 // uses the User.username property as the visible option string
                 'choice_label' => 'lastname',
             

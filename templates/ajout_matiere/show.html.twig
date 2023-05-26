@@ -21,6 +21,12 @@
                 <td>{{ formateur.lastname }}</td>
                 {% endfor %}
             </tr>
+            <tr>
+                <th>Classe</th>
+                {% for classe in classes%}
+                <td>{{ classe.name }}</td>
+                {% endfor %}
+            </tr>
         </tbody>
     </table>
 

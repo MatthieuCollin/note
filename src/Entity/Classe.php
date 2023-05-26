@@ -24,10 +24,18 @@ class Classe
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'classes')]
     private Collection $eleve;
 
+    #[ORM\OneToMany(mappedBy: 'classe', targetEntity: User::class)]
+    private Collection $users;
+
+    #[ORM\ManyToMany(targetEntity: Matiere::class, mappedBy: 'classe')]
+    private Collection $matieres;
+
     public function __construct()
     {
         $this->controle = new ArrayCollection();
         $this->eleve = new ArrayCollection();
+        $this->users = new ArrayCollection();
+        $this->matieres = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -80,25 +88,57 @@ class Classe
     /**
      * @return Collection<int, User>
      */
-    public function getEleve(): Collection
+    public function getUsers(): Collection
     {
-        return $this->eleve;
+        return $this->users;
     }
 
-    public function addEleve(User $eleve): self
+    public function addUser(User $user): self
     {
-        if (!$this->eleve->contains($eleve)) {
-            $this->eleve->add($eleve);
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->setClasse($this);
         }
 
         return $this;
     }
 
-    public function removeEleve(User $eleve): self
+    public function removeUser(User $user): self
     {
-        $this->eleve->removeElement($eleve);
+        if ($this->users->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getClasse() === $this) {
+                $user->setClasse(null);
+            }
+        }
 
         return $this;
     }
 
+    /**
+     * @return Collection<int, Matiere>
+     */
+    public function getMatieres(): Collection
+    {
+        return $this->matieres;
+    }
+
+    public function addMatiere(Matiere $matiere): self
+    {
+        if (!$this->matieres->contains($matiere)) {
+            $this->matieres->add($matiere);
+            $matiere->addClasse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMatiere(Matiere $matiere): self
+    {
+        if ($this->matieres->removeElement($matiere)) {
+            $matiere->removeClasse($this);
+        }
+
+        return $this;
+    }
 }
