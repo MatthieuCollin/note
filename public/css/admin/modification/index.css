@@ -1,13 +1,8 @@
-form{
-    background-color: #E0EAF5 ;
-    width: 90%;
-    height: 300px;
+.body{
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: space-around;
 }
-
 
 form label{
     width:100%;
@@ -19,28 +14,20 @@ form input{
 }
 
 form input:hover{
-    border: 2px solid black;
+    border-color: #FF8E2B;
+	outline: none;
 }
 
-.content{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    height: 100vh ;
-  }
-
 .box{
-    background-color: #2E77AE;
-    width: 60%;
-    height: 400px;
+    background-color: rgba(197, 206, 216, 0.42);
+    width: 25%;
+    height: auto;
+    border-radius: 30px 30px 30px 30px;
     display: flex;
+    flex-direction: column ;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    justify-content: space-around;
-    border: 2px solid;
+    padding: 20px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .box .submitInput{
@@ -58,3 +45,52 @@ form input:hover{
     width: 30%;
     height: 20px;
 }
+
+.titre{
+    font-size: 22px;
+    color: black;
+    margin-bottom: 20px;
+}
+
+button{
+    background: #fff;
+	font-size: 14px;
+	margin-top: 30px;
+	padding: 16px 20px;
+	border-radius: 26px;
+	border: 1px solid #D4D3E8;
+	text-transform: uppercase;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	color: #FF8E2B;
+	cursor: pointer;
+	transition: .2s;
+}
+
+button:hover{
+    background-color: whitesmoke;
+    border-color: #FF8E2B;
+	outline: none;
+}
+
+input{
+    border: none;
+	border-bottom: 2px solid #D1D1D4;
+	background: none;
+	padding: 10px;
+	padding-left: 24px;
+	font-weight: 700;
+	width: 75%;
+	transition: .2s;
+    margin-bottom: 15px;
+}
+
+input:active,
+input:focus,
+input:hover {
+	outline: none;
+	border-bottom-color: #FF8E2B;
+}
+
