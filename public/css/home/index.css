@@ -31,6 +31,7 @@ thead{
 tbody{
     border-radius: 30px 30px 30px 30px; 
 }
+
 tr{
     height: 30px;
 }
@@ -46,6 +47,7 @@ tbody tr:nth-child(odd){
 table{
     width: 100%;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
 .titre{

@@ -5,9 +5,9 @@
 {% block title %}Hello NoteEleveController!{% endblock %}
 
 {% block body %}
-<div class="content">
-    <div class="cadre">
-        <p class="titre">Mes notes :</p>
+<div class="container">
+    <div class="box">
+        <h2 class="titre">Mes notes :</h2>
         <table>
             <colgroup>
                 <col span="1" style="width: 25%;">
@@ -15,13 +15,13 @@
                 <col span="1" style="width: 25%;">
                 <col span="1" style="width: 25%;">
             </colgroup>
+            <thead>
+                <th>Notes</th>
+                <th>Nom du contrôle</th>
+                <th>Matières</th>
+                <th>formateurs</th>
+            </thead>
             <tbody>
-                <tr class="ligneblanche">
-                    <td>Notes</td>
-                    <td>Nom du contrôle</td>
-                    <td>Matières</td>
-                    <td>formateurs</td>
-                </tr>
                 {% for controle in controles %}
                     <tr class="lignebleu">
                         <td>{{controle.note}}</td>
