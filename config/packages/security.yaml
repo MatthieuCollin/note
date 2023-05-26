@@ -38,8 +38,11 @@ security:
         - { path: ^/note-prof, roles: [ROLE_FORMATEUR] }
         - { path: ^/note-prof, roles: [ROLE_FORMATEUR] }
 
-        - { path: ^/programme-prof, roles: [ROLE_FORMATEUR] }
-
+        - { path: ^/ajout-controle, roles: [ROLE_FORMATEUR] }
+        - { path: ^/ajout-controle, roles: [ROLE_FORMATEUR] }
+        
+        - { path: ^/ajout-classe, roles: [ROLE_ADMIN] }
+        - { path: ^/ajout-matiere, roles: [ROLE_ADMIN] }
 
 
 
