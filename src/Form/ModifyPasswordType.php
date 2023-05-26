@@ -24,10 +24,10 @@ class ModifyPasswordType extends AbstractType
                 'second_options' => ['label' => 'Confirmer le mot de passe'],
             ])
             ->add('save', SubmitType::class, [
-                'label' => "Enregistrer les modifications"
+                'label' => "Changer le mot de passe"
             ])
             ->add('save', SubmitType::class, [
-                'label' => "Enregistrer les modifications"
+                'label' => "Changer le mot de passe"
             ]);
     }
 
