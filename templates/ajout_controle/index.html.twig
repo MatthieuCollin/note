@@ -19,8 +19,8 @@
                 <td>{{ controle.id }}</td>
                 <td>{{ controle.name }}</td>
                 <td>
-                    <a href="{{ path('app_ajout_controlle_show', {'id': controle.id}) }}">show</a>
-                    <a href="{{ path('app_ajout_controlle_edit', {'id': controle.id}) }}">edit</a>
+                    <a href="{{ path('app_ajout_controle_show', {'id': controle.id}) }}">show</a>
+                    <a href="{{ path('app_ajout_controle_edit', {'id': controle.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +31,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_ajout_controlle_new') }}">Create new</a>
+    <a href="{{ path('app_ajout_controle_new') }}">Create new</a>
 {% endblock %}

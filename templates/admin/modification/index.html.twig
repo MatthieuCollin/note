@@ -6,36 +6,7 @@
 {% endblock %}
 
 {% block body %}
-    <div class="content">
         <div class="box">
             {{form(form)}}
         </div>
-        <div class="box">
-            <form action="">
-                <label for="">Utilisateur :
-                    <select id="listeClasse">
-                        {% set k = 10 %}
-                        {% for user in users %}
-                            <option value={{user.id}}>{{user.firstname}} {{user.lastname}}</option>
-                        {% endfor %}
-                    </select>
-                </label>
-                <label for="">Nom :
-                    <input type="text" name="" id="">
-                </label>
-        
-                <label for="">Prénom :
-                    <input type="text" name="" id=""></label>
-
-                <label for="">Mail :
-                    <input type="text" name="" id="">
-                </label>
-
-                <label for="">Rôles :
-                    <input type="text" name="" id="">
-                </label>
-            </form>
-            <input class='submitInput' type="submit" value="Modifier">
-        </div>
-    </div>
 {% endblock %}

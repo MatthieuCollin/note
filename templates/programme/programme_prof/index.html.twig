@@ -5,6 +5,7 @@
 {% block title %}Hello ProgrameEleveController!{% endblock %}
 
 {% block body %}
+<a href={{path('app_ajout_programme_index')}} type="submit">Ajouter</a>
     {% for matiere in matieres %}
         <div class="cadre">
             <p class="titre">Cours : {{matiere.name}} - Classe : 

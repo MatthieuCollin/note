@@ -40,10 +40,47 @@ class NoteEleveController extends AbstractController
     }
 
     #[Route('/note-prof', name: 'app_note_prof')]
-    public function noteProf(): Response
+    public function noteProf(ControleRepository $controleRepository, UserRepository $userRepository): Response
     {
+
+        $userId = $this->getUser();
+        $controles = $controleRepository->findBy(array('formateur'=>$userId));
+
+
+        foreach($controles as $controle){
+            $notes = $controle->getNotes();
+            if($notes->isEmpty()){
+                $dataNote = array();
+
+                $dataNote[]=[
+                    'note' => 'pas de notes',
+                    'firstname' =>'',
+                    'lastname'=>''
+                ];
+            }else{
+                foreach($notes as $note){
+                    $dataNote = array();
+
+                    $dataNote [] =[
+                        'note' => $note->getNote(),
+                        'firstname' => $note->getEleve()->getFirstname(),
+                        'lastname'=> $note->getEleve()->getLastname()
+                    ];
+                }
+            }
+            
+            $dataControle [] = [
+                'name' => $controle->getName(),
+                'formateur' => $controle->getFormateur()->getLastname(),
+                'matiere' => $controle->getMatiere()->getName(),
+                'notes' => $dataNote
+            ];
+        }
+
         return $this->render('note/note-prof/index.html.twig', [
             'controller_name' => 'NoteEleveController',
+            'controles' => $dataControle
+
         ]);
     }
 }
