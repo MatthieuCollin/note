@@ -34,6 +34,7 @@
                     <a class="underline" href={{path('app_ajout_matiere_index')}}>Matiere</a>
                 {% endif %}
             </nav>
+            <a class="underline deco" href={{path('app_modifyAdmin', { 'id': app.user.id })}}>{{app.user.firstname }} {{app.user.lastname }}</p>
             <a class="underline deco" href={{path('app_logout')}}>Déconnection</a>
         </header>
         <div class="body">

@@ -36,6 +36,8 @@ security:
         - { path: ^/note-eleve, roles: [ROLE_ELEVE] }
         - { path: ^/programme-eleve, roles: [ROLE_ELEVE] }
         - { path: ^/note-prof, roles: [ROLE_FORMATEUR] }
+        - { path: ^/note-prof, roles: [ROLE_FORMATEUR] }
+
         - { path: ^/programme-prof, roles: [ROLE_FORMATEUR] }
 
 
