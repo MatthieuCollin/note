@@ -38,13 +38,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'formateur', targetEntity: Controle::class)]
     private Collection $controle;
 
-    #[ORM\ManyToMany(targetEntity: Classe::class, mappedBy: 'eleve')]
-    private Collection $classes;
+    #[ORM\ManyToOne(inversedBy: 'users')]
+    private ?Classe $classe = null;
 
     public function __construct()
     {
         $this->controle = new ArrayCollection();
-        $this->classes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -144,12 +143,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, Controle>
      */
-    public function getClasse(): Collection
+    public function getControle(): Collection
     {
         return $this->controle;
     }
 
-    public function addClasse(Controle $classe): self
+    public function addControle(Controle $classe): self
     {
         if (!$this->controle->contains($classe)) {
             $this->controle->add($classe);
@@ -159,7 +158,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeClasse(Controle $controle): self
+    public function removeControle(Controle $controle): self
     {
         if ($this->controle->removeElement($controle)) {
             // set the owning side to null (unless already changed)
@@ -171,29 +170,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Classe>
-     */
-    public function getClasses(): Collection
+    public function getClasse(): ?Classe
     {
-        return $this->classes;
+        return $this->classe;
     }
 
-    public function addClass(Classe $class): self
+    public function setClasse(?Classe $classe): self
     {
-        if (!$this->classes->contains($class)) {
-            $this->classes->add($class);
-            $class->addEleve($this);
-        }
-
-        return $this;
-    }
-
-    public function removeClass(Classe $class): self
-    {
-        if ($this->classes->removeElement($class)) {
-            $class->removeEleve($this);
-        }
+        $this->classe = $classe;
 
         return $this;
     }

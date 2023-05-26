@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\ClasseRepository;
 use App\Repository\ControleRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,17 +12,30 @@ use Symfony\Component\Routing\Annotation\Route;
 class NoteEleveController extends AbstractController
 {
     #[Route('/note-eleve', name: 'app_note_eleve')]
-    public function index(ControleRepository $controleRepository, ClasseRepository $classeRepository): Response
+    public function index(ControleRepository $controleRepository, UserRepository $userRepository): Response
     {
-        $idEleve = $this->getUser();
-        $classes = $classeRepository->findBy(array('user_id'=> $idEleve->getId()));
+        $userId = $this->getUser();
+        $user = $userRepository->findOneBy(array('id'=>$userId));
 
-        dd($classes);
+        $controles = $user->getClasse()->getcontrole();
 
-        $controles = $controleRepository->findBy(array('classe' => $classes[0]));
+        foreach($controles as $controle){
+            foreach($controle->getNotes() as $note){
+                if($note->getEleve() == $userId){
+                    $dataNote = $note->getNote();
+                }
+            }
+            $dataControle [] = [
+                'name' => $controle->getName(),
+                'formateur' => $controle->getFormateur()->getLastname(),
+                'matiere' => $controle->getMatiere()->getName(),
+                'note' => $dataNote
+            ];
+        }
 
         return $this->render('note/note_eleve/index.html.twig', [
             'controller_name' => 'NoteEleveController',
+            'controles' => $dataControle
         ]);
     }
 

@@ -6,6 +6,7 @@ use App\Entity\Note;
 use App\Entity\Classe;
 use App\Form\NotesType;
 use App\Entity\Controle;
+use App\Entity\User;
 use App\Form\ControleType;
 use App\Repository\ControleRepository;
 use App\Repository\NoteRepository;
@@ -89,10 +90,9 @@ class AjoutControlleController extends AbstractController
     {
 
 
-        $classerepo = $entityManagerInterface->getRepository(Classe::class);
-        $classes = $classerepo->findOneBy(array('id'=>$controle->getClasse()->getId()));
+        $userrepo = $entityManagerInterface->getRepository(User::class);
+        $users = $userrepo->findOneBy(array('classe'=>$controle->getClasse()->getId()));
 
-        $users = $classes->getEleve();
         $note = new Note();
 
 

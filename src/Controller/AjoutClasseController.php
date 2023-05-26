@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Classe;
 use App\Form\ClasseType;
 use App\Repository\ClasseRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,11 +45,13 @@ class AjoutClasseController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_ajout_classe_show', methods: ['GET'])]
-    public function show(Classe $classe): Response
+    public function show(Classe $classe, UserRepository $userRepository, $id): Response
     {
+        $users = $userRepository->findBy(array('classe'=>$id));
+
         return $this->render('ajout_classe/show.html.twig', [
             'classe' => $classe,
-            'eleves' => $classe->getEleve()
+            'eleves' => $users
         ]);
     }
 
@@ -60,6 +63,12 @@ class AjoutClasseController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->get('eleve')->getData();
+            
+            foreach($data as $user){
+                $user->setClasse($classe);
+            }
+
             $classeRepository->save($classe, true);
 
             return $this->redirectToRoute('app_ajout_classe_index', [], Response::HTTP_SEE_OTHER);

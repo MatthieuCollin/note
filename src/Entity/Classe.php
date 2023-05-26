@@ -24,10 +24,14 @@ class Classe
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'classes')]
     private Collection $eleve;
 
+    #[ORM\OneToMany(mappedBy: 'classe', targetEntity: User::class)]
+    private Collection $users;
+
     public function __construct()
     {
         $this->controle = new ArrayCollection();
         $this->eleve = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -80,25 +84,30 @@ class Classe
     /**
      * @return Collection<int, User>
      */
-    public function getEleve(): Collection
+    public function getUsers(): Collection
     {
-        return $this->eleve;
+        return $this->users;
     }
 
-    public function addEleve(User $eleve): self
+    public function addUser(User $user): self
     {
-        if (!$this->eleve->contains($eleve)) {
-            $this->eleve->add($eleve);
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->setClasse($this);
         }
 
         return $this;
     }
 
-    public function removeEleve(User $eleve): self
+    public function removeUser(User $user): self
     {
-        $this->eleve->removeElement($eleve);
+        if ($this->users->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getClasse() === $this) {
+                $user->setClasse(null);
+            }
+        }
 
         return $this;
     }
-
 }

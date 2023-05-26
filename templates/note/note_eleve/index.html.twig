@@ -18,58 +18,18 @@
             <tbody>
                 <tr class="ligneblanche">
                     <td>Notes</td>
-                    <td>Moy.</td>
+                    <td>Nom du contrôle</td>
                     <td>Matières</td>
                     <td>formateurs</td>
                 </tr>
-                <tr class="lignebleu">
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="ligneblanche">
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="lignebleu">
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="ligneblanche">
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="lignebleu">
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="ligneblanche">
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="lignebleu">
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="ligneblanche">
-                    <td>test</td>
-                    <td>test</td>  
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
+                {% for controle in controles %}
+                    <tr class="lignebleu">
+                        <td>{{controle.note}}</td>
+                        <td>{{controle.name}}</td>
+                        <td>{{controle.matiere}}</td>
+                        <td>{{controle.formateur}}</td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
