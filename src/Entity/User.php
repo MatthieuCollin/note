@@ -44,9 +44,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToOne(inversedBy: 'users')]
     private ?Matiere $matiere = null;
 
+    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'eleve')]
+    private ?self $user = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: self::class)]
+    private Collection $eleve;
+
     public function __construct()
     {
         $this->controle = new ArrayCollection();
+        $this->eleve = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -193,6 +200,48 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setMatiere(?Matiere $matiere): self
     {
         $this->matiere = $matiere;
+
+        return $this;
+    }
+
+    public function getUser(): ?self
+    {
+        return $this->user;
+    }
+
+    public function setUser(?self $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getEleve(): Collection
+    {
+        return $this->eleve;
+    }
+
+    public function addEleve(self $eleve): self
+    {
+        if (!$this->eleve->contains($eleve)) {
+            $this->eleve->add($eleve);
+            $eleve->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEleve(self $eleve): self
+    {
+        if ($this->eleve->removeElement($eleve)) {
+            // set the owning side to null (unless already changed)
+            if ($eleve->getUser() === $this) {
+                $eleve->setUser(null);
+            }
+        }
 
         return $this;
     }

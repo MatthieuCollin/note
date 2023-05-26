@@ -1,8 +1,11 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" href={{asset('css/crud/index.css')}}>
+{% endblock %}
 {% block title %}Classe index{% endblock %}
 
 {% block body %}
+<div class="box">
     <h1>Classe index</h1>
 
     <table class="table">
@@ -19,8 +22,8 @@
                 <td>{{ classe.id }}</td>
                 <td>{{ classe.name }}</td>
                 <td>
-                    <a href="{{ path('app_ajout_classe_show', {'id': classe.id}) }}">show</a>
-                    <a href="{{ path('app_ajout_classe_edit', {'id': classe.id}) }}">edit</a>
+                    <a href="{{ path('app_ajout_classe_show', {'id': classe.id}) }}">Regarder</a>
+                    <a href="{{ path('app_ajout_classe_edit', {'id': classe.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +34,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_ajout_classe_new') }}">Create new</a>
+    <a class="button" href="{{ path('app_ajout_classe_new') }}">Créer</a>
+</div>
 {% endblock %}

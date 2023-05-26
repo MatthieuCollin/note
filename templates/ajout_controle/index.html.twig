@@ -1,8 +1,11 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" href={{asset('css/crud/index.css')}}>
+{% endblock %}
 {% block title %}Controle index{% endblock %}
 
 {% block body %}
+<div class="box">
     <h1>Controle index</h1>
 
     <table class="table">
@@ -20,7 +23,7 @@
                 <td>{{ controle.name }}</td>
                 <td>
                     <a href="{{ path('app_ajout_controle_show', {'id': controle.id}) }}">show</a>
-                    <a href="{{ path('app_ajout_controle_edit', {'id': controle.id}) }}">edit</a>
+                    <a href="{{ path('app_ajout_controle_edit', {'id': controle.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +34,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_ajout_controle_new') }}">Create new</a>
+    <a href="{{ path('app_ajout_controle_new') }}">Créer</a>
+</div>
 {% endblock %}

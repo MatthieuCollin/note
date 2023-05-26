@@ -46,12 +46,13 @@ class AdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // on récup les données du form
             $user = $form->getData();
+
+            
             /* It's hashing the password. */
             // mot de passe de base Azerty14!
             $password = $encoder->hashPassword($user, 'Azerty14!');
             $user->setPassword($password);
             /* It's saving the data to the database. */
-
             //
             $entityManager = $doctrine->getManager();
             $entityManager->persist($user);

@@ -1,8 +1,11 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" href={{asset('css/crud/index.css')}}>
+{% endblock %}
 {% block title %}Classe{% endblock %}
 
 {% block body %}
+<div class="box">
     <h1>Classe</h1>
 
     <table class="table">
@@ -24,9 +27,10 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_ajout_classe_index') }}">back to list</a>
+    <a class="button" href="{{ path('app_ajout_classe_index') }}">Retour a la liste</a>
 
-    <a href="{{ path('app_ajout_classe_edit', {'id': classe.id}) }}">edit</a>
+    <a class="button" href="{{ path('app_ajout_classe_edit', {'id': classe.id}) }}">Modifier</a>
 
     {{ include('ajout_classe/_delete_form.html.twig') }}
+</div>
 {% endblock %}

@@ -1,8 +1,11 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" href={{asset('css/crud/index.css')}}>
+{% endblock %}
 {% block title %}Matiere index{% endblock %}
 
 {% block body %}
+<div class="box">
     <h1>Matiere index</h1>
 
     <table class="table">
@@ -20,7 +23,7 @@
                 <td>{{ matiere.name }}</td>
                 <td>
                     <a href="{{ path('app_ajout_matiere_show', {'id': matiere.id}) }}">show</a>
-                    <a href="{{ path('app_ajout_matiere_edit', {'id': matiere.id}) }}">edit</a>
+                    <a href="{{ path('app_ajout_matiere_edit', {'id': matiere.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +34,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_ajout_matiere_new') }}">Create new</a>
+    <a href="{{ path('app_ajout_matiere_new') }}">Créer</a>
+</div>
 {% endblock %}

@@ -1,12 +1,16 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" href={{asset('css/crud/index.css')}}>
+{% endblock %}
 {% block title %}New Classe{% endblock %}
 
 
 {% block body %}
-    <h1>Create new Classe</h1>
+<div class="box">
+    <h1>Créer Classe</h1>
 
     {{ include('ajout_classe/_form.html.twig') }}
 
-    <a href="{{ path('app_ajout_classe_index') }}">back to list</a>
+    <a class="button" href="{{ path('app_ajout_classe_index') }}">Retour a la liste</a>
+</div>
 {% endblock %}
