@@ -27,11 +27,15 @@ class Classe
     #[ORM\OneToMany(mappedBy: 'classe', targetEntity: User::class)]
     private Collection $users;
 
+    #[ORM\ManyToMany(targetEntity: Matiere::class, mappedBy: 'classe')]
+    private Collection $matieres;
+
     public function __construct()
     {
         $this->controle = new ArrayCollection();
         $this->eleve = new ArrayCollection();
         $this->users = new ArrayCollection();
+        $this->matieres = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -106,6 +110,33 @@ class Classe
             if ($user->getClasse() === $this) {
                 $user->setClasse(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Matiere>
+     */
+    public function getMatieres(): Collection
+    {
+        return $this->matieres;
+    }
+
+    public function addMatiere(Matiere $matiere): self
+    {
+        if (!$this->matieres->contains($matiere)) {
+            $this->matieres->add($matiere);
+            $matiere->addClasse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMatiere(Matiere $matiere): self
+    {
+        if ($this->matieres->removeElement($matiere)) {
+            $matiere->removeClasse($this);
         }
 
         return $this;

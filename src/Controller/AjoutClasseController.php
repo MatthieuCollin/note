@@ -33,6 +33,13 @@ class AjoutClasseController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->get('eleve')->getData();
+            
+            foreach($data as $user){
+                $user->setClasse($classe);
+            }
+
+
             $classeRepository->save($classe, true);
 
             return $this->redirectToRoute('app_ajout_classe_index', [], Response::HTTP_SEE_OTHER);
