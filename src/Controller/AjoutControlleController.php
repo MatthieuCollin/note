@@ -91,7 +91,11 @@ class AjoutControlleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $note->setControle($controle);
-            $controleRepository->save($controle, true);
+
+            $data =$form->getData();
+
+            dd($data);
+
 
             return $this->redirectToRoute('app_ajout_controlle_index', [], Response::HTTP_SEE_OTHER);
         }
