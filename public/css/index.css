@@ -4,8 +4,12 @@
 
 body{
     font-family: Arial, Helvetica, sans-serif;
+
 }
 
+.body{
+    height: 80vh;
+} 
 header{
     width: 100%;
     display: flex;
@@ -13,7 +17,7 @@ header{
     justify-content: space-around;
     font-size: 30px;
     background: #0D2137;	
-    height: 100px;
+    height: 10vh;
 } 
 
 a.underline{
@@ -64,14 +68,13 @@ nav{
 }
 
 
-
 footer{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     width: 100%;
     background: #0D2137;
-    height: 100px;
+    height: 10vh;
 }
 
 footer a{
