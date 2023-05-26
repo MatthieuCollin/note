@@ -15,28 +15,48 @@ class ProgrameEleveController extends AbstractController
         $userId = $this->getUser();
         $user = $userRepository->findOneBy(array('id'=>$userId));
 
-        $matieres = $user->getClasse()->getMatieres();
+        $classes = $user->getClasse();
 
-        foreach($matieres as $matiere){
-
-            $matiereId = $matiere->getId();
-
-            $prof = $userRepository->findOneBy(array('matiere'=>$matiereId));
-
-            foreach($matiere->getProgrammes() as $programme){
-                $dataProgramme = array();
-
-                $dataProgramme[] =[
-                    'name' => $programme->getName(),
-                ];
-            }
-
+        if(!$classes){
             $dataMatiere [] = [
-                'name' => $matiere->getName(),
-                'programmes' => $dataProgramme,
-                'formateurFirstname' =>  $prof->getFirstname(),
-                'formateurLastname' => $prof->getLastname()
+                'name' => 'Vous n`avez pas de classe pour le moment',
+                'programmes' => '',
+                'formateurFirstname' =>  '',
+                'formateurLastname' => ''
             ];
+        }else{
+            $matieres = $classes->getMatieres();
+
+            if($matieres->isEmpty()){
+                $dataMatiere [] = [
+                    'name' => 'Pas de matière pour le moment',
+                    'programmes' => '',
+                    'formateurFirstname' =>  '',
+                    'formateurLastname' => ''
+                ];
+            }else{
+                foreach($matieres as $matiere){
+    
+                    $matiereId = $matiere->getId();
+        
+                    $prof = $userRepository->findOneBy(array('matiere'=>$matiereId));
+        
+                    foreach($matiere->getProgrammes() as $programme){
+                        $dataProgramme = array();
+        
+                        $dataProgramme[] =[
+                            'name' => $programme->getName(),
+                        ];
+                    }
+        
+                    $dataMatiere [] = [
+                        'name' => $matiere->getName(),
+                        'programmes' => $dataProgramme,
+                        'formateurFirstname' =>  $prof->getFirstname(),
+                        'formateurLastname' => $prof->getLastname()
+                    ];
+                }
+            }
         }
 
         return $this->render('programme/programe_eleve/index.html.twig', [
@@ -54,40 +74,48 @@ class ProgrameEleveController extends AbstractController
         
         $matiere = $user->getMatiere();
 
-        $classes = $matiere->getClasse();
-
-        foreach($classes as $classe){
-            $dataClasses [] =[
-                'classname' => $classe->getName()
-            ];
-        }
-
-        $programmes = $matiere->getProgrammes();
-        if($programmes->isEmpty()){
-            $dataProgramme = array();
-    
-                
-            $dataProgramme[] =[
-                'name' => 'pas de cours',
+        if(!$matiere){
+            $dataMatiere [] = [
+                'name' => 'pas de matière',
+                'programmes' => '',
+                'classes' =>  '',
             ];
         }else{
-            foreach( $programmes as $programme){
-                $dataProgramme = array();
-    
-                
-                $dataProgramme[] =[
-                    'name' => $programme->getName(),
+            $classes = $matiere->getClasse();
+
+            foreach($classes as $classe){
+                $dataClasses [] =[
+                    'classname' => $classe->getName()
                 ];
             }
-        }
+    
+            $programmes = $matiere->getProgrammes();
+            if($programmes->isEmpty()){
+                $dataProgramme = array();
         
-
-        $dataMatiere [] = [
-            'name' => $matiere->getName(),
-            'programmes' => $dataProgramme,
-            'classes' =>  $dataClasses,
-        ];
-
+                    
+                $dataProgramme[] =[
+                    'name' => 'pas de cours',
+                ];
+            }else{
+                foreach( $programmes as $programme){
+                    $dataProgramme = array();
+        
+                    
+                    $dataProgramme[] =[
+                        'name' => $programme->getName(),
+                    ];
+                }
+            }
+            
+    
+            $dataMatiere [] = [
+                'name' => $matiere->getName(),
+                'programmes' => $dataProgramme,
+                'classes' =>  $dataClasses,
+            ];
+    
+        }
 
         return $this->render('programme/programme_prof/index.html.twig', [
             'controller_name' => 'ProgrameEleveController',

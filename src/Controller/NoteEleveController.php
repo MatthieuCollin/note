@@ -17,22 +17,44 @@ class NoteEleveController extends AbstractController
         $userId = $this->getUser();
         $user = $userRepository->findOneBy(array('id'=>$userId));
 
-        $controles = $user->getClasse()->getcontrole();
+        $classes = $user->getClasse();
+        if(!$classes){
+            $dataControle [] = [
+                'name' => 'Vous n`avez pas de classe pour le moment',
+                'formateur' => '',
+                'matiere' => '',
+                'note' => ['']
+            ];
+        }else{
+            $controles = $classes->getcontrole();
 
-        foreach($controles as $controle){
-            foreach($controle->getNotes() as $note){
-                if($note->getEleve() == $userId){
-                    $dataNote = $note->getNote();
+            if($controles->isEmpty()){
+                $dataControle [] = [
+                    'name' => 'Pas de contrôle',
+                    'formateur' => '',
+                    'matiere' => '',
+                    'note' => ['']
+                ];
+    
+            }else{
+                foreach($controles as $controle){
+                    foreach($controle->getNotes() as $note){
+                        if($note->getEleve() == $userId){
+                            $dataNote = $note->getNote();
+                        }
+                    }
+                    $dataControle [] = [
+                        'name' => $controle->getName(),
+                        'formateur' => $controle->getFormateur()->getLastname(),
+                        'matiere' => $controle->getMatiere()->getName(),
+                        'note' => $dataNote
+                    ];
                 }
             }
-            $dataControle [] = [
-                'name' => $controle->getName(),
-                'formateur' => $controle->getFormateur()->getLastname(),
-                'matiere' => $controle->getMatiere()->getName(),
-                'note' => $dataNote
-            ];
         }
+        
 
+        
         return $this->render('note/note_eleve/index.html.twig', [
             'controller_name' => 'NoteEleveController',
             'controles' => $dataControle
@@ -46,36 +68,55 @@ class NoteEleveController extends AbstractController
         $userId = $this->getUser();
         $controles = $controleRepository->findBy(array('formateur'=>$userId));
 
-
-        foreach($controles as $controle){
-            $notes = $controle->getNotes();
-            if($notes->isEmpty()){
-                $dataNote = array();
-
-                $dataNote[]=[
+        if(!$controles){
+            $dataNote[
+                ]=[
                     'note' => 'pas de notes',
                     'firstname' =>'',
                     'lastname'=>''
                 ];
-            }else{
-                foreach($notes as $note){
-                    $dataNote = array();
 
-                    $dataNote [] =[
-                        'note' => $note->getNote(),
-                        'firstname' => $note->getEleve()->getFirstname(),
-                        'lastname'=> $note->getEleve()->getLastname()
-                    ];
-                }
-            }
-            
             $dataControle [] = [
-                'name' => $controle->getName(),
-                'formateur' => $controle->getFormateur()->getLastname(),
-                'matiere' => $controle->getMatiere()->getName(),
+                'name' => 'Pas de contrôle',
+                'formateur' => '',
+                'matiere' => '',
                 'notes' => $dataNote
             ];
+
+        }else{
+            foreach($controles as $controle){
+                $notes = $controle->getNotes();
+                if($notes->isEmpty()){
+                    $dataNote = array();
+    
+                    $dataNote[]=[
+                        'note' => 'pas de notes',
+                        'firstname' =>'',
+                        'lastname'=>''
+                    ];
+                }else{
+                    foreach($notes as $note){
+                        $dataNote = array();
+    
+                        $dataNote [] =[
+                            'note' => $note->getNote(),
+                            'firstname' => $note->getEleve()->getFirstname(),
+                            'lastname'=> $note->getEleve()->getLastname()
+                        ];
+                    }
+                }
+                
+                $dataControle [] = [
+                    'name' => $controle->getName(),
+                    'formateur' => $controle->getFormateur()->getLastname(),
+                    'matiere' => $controle->getMatiere()->getName(),
+                    'notes' => $dataNote
+                ];
+            }
         }
+
+
+        
 
         return $this->render('note/note-prof/index.html.twig', [
             'controller_name' => 'NoteEleveController',

@@ -7,6 +7,9 @@
 {% block body %}
 
 {% for matiere in matieres %}
+{% if matiere.name == 'Pas de matière pour le moment' or matiere.name == 'Vous n`avez pas de classe pour le moment' %}
+        <h2>{{matiere.name}}</h2>
+{% else %}
 <div class="container">
     <div class="box">
         <h2 class="titre">Cours : {{matiere.name}}</h2>
@@ -15,11 +18,11 @@
                 <th> Formateur : {{matiere.formateurLastname}} {{matiere.formateurFirstname}}</th>
             </thead>
             <tbody>
-                <tr class="ligneblanche">
+                <tr>
                     <td>Programmes</td>
                 </tr>
                 {% for programme in matiere.programmes %}
-                <tr class="ligneblanche">
+                <tr>
                     <td>{{programme.name}}</td>
                 </tr>
                 {% endfor %}
@@ -27,5 +30,6 @@
         </table>
     </div>
 </div>
+{% endif %}
 {% endfor %}
 {% endblock %}
