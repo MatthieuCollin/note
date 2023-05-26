@@ -7,9 +7,13 @@
 {% block body %}
 
 {% for matiere in matieres %}
-    <div class="cadre">
-        <p class="titre">Cours : {{matiere.name}} - Formateur : {{matiere.formateurLastname}} {{matiere.formateurFirstname}}</p>
+<div class="container">
+    <div class="box">
+        <h2 class="titre">Cours : {{matiere.name}}</h2>
         <table>
+            <thead>
+                <th> Formateur : {{matiere.formateurLastname}} {{matiere.formateurFirstname}}</th>
+            </thead>
             <tbody>
                 <tr class="ligneblanche">
                     <td>Programmes</td>
@@ -22,10 +26,6 @@
             </tbody>
         </table>
     </div>
+</div>
 {% endfor %}
-    
-    
-    
-
-
 {% endblock %}
