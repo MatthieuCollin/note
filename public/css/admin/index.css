@@ -12,3 +12,7 @@ td,th{
     width: 200px;
     text-align: center
 }
+
+.wrapper{
+    overflow-y: scroll;
+}
