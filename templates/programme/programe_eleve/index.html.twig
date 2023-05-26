@@ -7,21 +7,25 @@
 {% block body %}
 
 {% for matiere in matieres %}
-    <div class="cadre">
-        <p class="titre">Cours : {{matiere.name}} - Formateur : {{matiere.formateurLastname}} {{matiere.formateurFirstname}}</p>
-        <table>
-            <tbody>
-                <tr class="ligneblanche">
-                    <td>Programmes</td>
-                </tr>
-                {% for programme in matiere.programmes %}
-                <tr class="ligneblanche">
-                    <td>{{programme.name}}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    {% if matiere.name == 'Pas de matière pour le moment' or matiere.name == 'Vous n`avez pas de classe pour le moment' %}
+        <h2>{{matiere.name}}</h2>
+    {% else %}
+        <div class="cadre">
+            <p class="titre">Cours : {{matiere.name}} - Formateur : {{matiere.formateurLastname}} {{matiere.formateurFirstname}}</p>
+            <table>
+                <tbody>
+                    <tr class="ligneblanche">
+                        <td>Programmes</td>
+                    </tr>
+                    {% for programme in matiere.programmes %}
+                    <tr class="ligneblanche">
+                        <td>{{programme.name}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
 {% endfor %}
     
     

@@ -7,27 +7,31 @@
 {% block body %}
 <a href={{path('app_ajout_controle_index')}} type="submit">Ajouter</a>
     {% for controle in controles %}
-        <div class="cadre">
-        <p class="titre">Controle : {{controle.name}}</p>
-        <table>
-            <colgroup>
-                <col span="1" style="width: 50%;">
-                <col span="1" style="width: 50%;">
-            </colgroup>
-            <tbody>
-                <tr class="ligneblanche">
-                    <td>Notes</td>
-                    <td>Élèves</td>
-                </tr>
-                {% for note in controle.notes %}
-                    <tr class="lignebleu">
-                        <td>{{note.note}}</td>
-                        <td>{{note.firstname}} {{note.lastname}}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+        {% if controle.name == 'Pas de contrôle' %}
+            <h2>Pas de controle</h2>
+        {% else %}
+            <div class="cadre">
+                <p class="titre">Controle : {{controle.name}}</p>
+                <table>
+                    <colgroup>
+                        <col span="1" style="width: 50%;">
+                        <col span="1" style="width: 50%;">
+                    </colgroup>
+                    <tbody>
+                        <tr class="ligneblanche">
+                            <td>Notes</td>
+                            <td>Élèves</td>
+                        </tr>
+                        {% for note in controle.notes %}
+                            <tr class="lignebleu">
+                                <td>{{note.note}}</td>
+                                <td>{{note.firstname}} {{note.lastname}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
     {% endfor %}
     
 {% endblock %}

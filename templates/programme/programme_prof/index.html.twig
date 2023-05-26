@@ -7,25 +7,30 @@
 {% block body %}
 <a href={{path('app_ajout_programme_index')}} type="submit">Ajouter</a>
     {% for matiere in matieres %}
-        <div class="cadre">
-            <p class="titre">Cours : {{matiere.name}} - Classe : 
-                {% for classe in matiere.classes %}
-                    {{classe.classname}}
-                {% endfor %}
-            </p>
-            <table>
-                <tbody>
-                    <tr class="ligneblanche">
-                        <td>Programmes</td>
-                    </tr>
-                    {% for programme in matiere.programmes %}
-                    <tr class="ligneblanche">
-                        <td>{{programme.name}}</td>
-                    </tr>
+        {% if matiere.name == 'pas de matière' %}
+            <h2>pas de matière</h2>
+        {% else %}
+            <div class="cadre">
+                <p class="titre">Cours : {{matiere.name}} - Classe : 
+                    {% for classe in matiere.classes %}
+                        {{classe.classname}}
                     {% endfor %}
-                </tbody>
-            </table>
-        </div>
+                </p>
+                <table>
+                    <tbody>
+                        <tr class="ligneblanche">
+                            <td>Programmes</td>
+                        </tr>
+                        {% for programme in matiere.programmes %}
+                        <tr class="ligneblanche">
+                            <td>{{programme.name}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+        
     {% endfor %}
 
 
