@@ -28,6 +28,7 @@ a.underline{
 }
 
 a.underline:after{
+    color: #FF8E2B;
     content: '';
     position: absolute;
     left: 0;
