@@ -9,10 +9,10 @@
 
 body {
 	background-image: url(../../img/scholarfab-le-havre.jpg);	
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	overflow: hidden;
 }
 
 .container {

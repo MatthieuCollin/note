@@ -4,9 +4,6 @@
 
 body{
     font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
 header{
@@ -15,7 +12,7 @@ header{
     align-items: center;
     justify-content: space-around;
     font-size: 30px;
-    background: linear-gradient(270deg, #0D2137, #2E77AE);	
+    background: #0D2137;	
     height: 100px;
 } 
 
@@ -95,7 +92,7 @@ footer img{
     grid-row-gap: 0px;
     text-align: center;
     color: #FF8E2B;
-    font-weight: bold;
+    font-size: 20px;
     }
     
     .div1 { grid-area: 1 / 1 / 2 / 2; }
