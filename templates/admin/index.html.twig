@@ -6,24 +6,26 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Gestion :</h1>
-    <a href={{path('app_admin_ajout')}}>Ajouter Admin</a>
-    <div class="wrapper">
-        <table>
-            <tr class="tHead">
-                <th>Prénom</th>
-                <th>Nom</th>
-                <th>Mail</th>
-                <th>Rôles</th>
-            </tr>
-            {% for user in users %}
-                <tr>
-                    <td>{{user.firstname}}</td>
-                    <td>{{user.lastname}}</td>
-                    <td>{{user.email}}</td>---
-                    <td>{{user.roles|first}}</td>
-                </tr>
-            {% endfor %}
-        </table>
+    <div class="container">
+        <a class="button" href={{path('app_admin_ajout')}}>Ajouter Admin</a>
+        <div class="box">
+            <table>
+                <thead>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Mail</th>
+                    <th>Rôles</th>
+                </thead>
+                {% for user in users %}
+                    <tr>
+                        <td>{{user.firstname}}</td>
+                        <td>{{user.lastname}}</td>
+                        <td>{{user.email}}</td>---
+                        <td>{{user.roles|first}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
     </div>
+    
 {% endblock %}
