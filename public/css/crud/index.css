@@ -72,6 +72,7 @@
     cursor: pointer;
     text-decoration: none;
     transition: .2s;
+    margin-left: 15px;
 }
 
 .button:hover{
@@ -86,4 +87,13 @@ a img{
 
 .red{
   color: red;
+}
+.red:hover{
+  border-color: red;
+  outline: none;
+}
+
+.align{
+  display: flex;
+  flex-direction: row;
 }
