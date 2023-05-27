@@ -5,35 +5,35 @@
 {% block title %}Matiere index{% endblock %}
 
 {% block body %}
-<div class="box">
-    <h1>Matiere index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for matiere in matieres %}
-            <tr>
-                <td>{{ matiere.id }}</td>
-                <td>{{ matiere.name }}</td>
-                <td>
-                    <a href="{{ path('app_ajout_matiere_show', {'id': matiere.id}) }}">show</a>
-                    <a href="{{ path('app_ajout_matiere_edit', {'id': matiere.id}) }}">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_ajout_matiere_new') }}">Créer</a>
+<div class="container">
+    <div class="box">
+        <h1>Matiere index</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for matiere in matieres %}
+                <tr>
+                    <td>{{ matiere.id }}</td>
+                    <td>{{ matiere.name }}</td>
+                    <td>
+                        <a href="{{ path('app_ajout_matiere_show', {'id': matiere.id}) }}"><img src="{{ asset('/img/voir.png') }}" alt="voir"></a>
+                        <a href="{{ path('app_ajout_matiere_edit', {'id': matiere.id}) }}"><img src="{{ asset('/img/bouton-modifier.png')}}" alt="modif"></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a class="button" href="{{ path('app_ajout_classe_new') }}">Créer</a>
+    </div>
 </div>
 {% endblock %}
