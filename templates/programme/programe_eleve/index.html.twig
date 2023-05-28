@@ -11,7 +11,11 @@
         <h2>{{matiere.name}}</h2>
 {% else %}
 <div class="container">
+    {% if app.user.eleve %}
+        <h2>Voici les Matières de votre stagiaire {{matiere.eleveFirstname}} {{matiere.eleveLastname}}  </h2>
+    {% endif %}
     <div class="box">
+
         <h2 class="titre">Cours : {{matiere.name}}</h2>
         <table>
             <thead>

@@ -17,21 +17,8 @@ class NoteEleveController extends AbstractController
         $userId = $this->getUser();
         $user = $userRepository->findOneBy(array('id'=>$userId));
         
-
-
-        if(!$user->getEleve()){
+        if(!$user->getUser()){
             $classes = $user->getClasse();
-            eleve($classes, $userId);
-        }else{
-            $test = $user->getEleve();
-            dd($test);
-            $userId = $user->getEleve()->getId();
-            $eleve = $userRepository->findOneBy(array('id'=>$userId));
-            $classes = $eleve->getClasse();
-            eleve($classes,$userId );
-        }
-
-        function eleve($classes, $userId){
             if(!$classes){
                 $dataControle [] = [
                     'name' => 'Vous n`avez pas de classe pour le moment',
@@ -66,11 +53,50 @@ class NoteEleveController extends AbstractController
                     }
                 }
             }
-        }
-        
-        
+        }else{
+            $userId = $user->getUser()->getId();
+            $eleve = $userRepository->findOneBy(array('id'=>$userId));
+            $classes = $eleve->getClasse();
+            if(!$classes){
+                $dataControle [] = [
+                    'name' => 'Vous n`avez pas de classe pour le moment',
+                    'formateur' => '',
+                    'matiere' => '',
+                    'note' => [''],
+                    'eleveFirstname' => $user->getUser()->getFirstname(),
+                    'eleveLastname' => $user->getUser()->getLastname()
+                ];
+            }else{
+                $controles = $classes->getcontrole();
 
+                if($controles->isEmpty()){
+                    $dataControle [] = [
+                        'name' => 'Pas de contrôle',
+                        'formateur' => '',
+                        'matiere' => '',
+                        'note' => ['']
+                    ];
         
+                }else{
+                    foreach($controles as $controle){
+                        foreach($controle->getNotes() as $note){
+                            if($note->getEleve() == $userId){
+                                $dataNote = $note->getNote();
+                            }
+                        }
+                        $dataControle [] = [
+                            'name' => $controle->getName(),
+                            'formateur' => $controle->getFormateur()->getLastname(),
+                            'matiere' => $controle->getMatiere()->getName(),
+                            'note' => $dataNote,
+                            'eleveFirstname' => $user->getUser()->getFirstname(),
+                            'eleveLastname' => $user->getUser()->getLastname()
+                        ];
+                    }
+                }
+            }
+        }
+
         return $this->render('note/note_eleve/index.html.twig', [
             'controller_name' => 'NoteEleveController',
             'controles' => $dataControle

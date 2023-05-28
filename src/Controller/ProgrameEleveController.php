@@ -17,47 +17,101 @@ class ProgrameEleveController extends AbstractController
 
         $classes = $user->getClasse();
 
-        if(!$classes){
-            $dataMatiere [] = [
-                'name' => 'Vous n`avez pas de classe pour le moment',
-                'programmes' => '',
-                'formateurFirstname' =>  '',
-                'formateurLastname' => ''
-            ];
-        }else{
-            $matieres = $classes->getMatieres();
 
-            if($matieres->isEmpty()){
+        if(!$user->getUser()) {
+            $classes = $user->getClasse();
+            if(!$classes){
                 $dataMatiere [] = [
-                    'name' => 'Pas de matière pour le moment',
+                    'name' => 'Vous n`avez pas de classe pour le moment',
                     'programmes' => '',
                     'formateurFirstname' =>  '',
                     'formateurLastname' => ''
                 ];
             }else{
-                foreach($matieres as $matiere){
+                $matieres = $classes->getMatieres();
     
-                    $matiereId = $matiere->getId();
+                if($matieres->isEmpty()){
+                    $dataMatiere [] = [
+                        'name' => 'Pas de matière pour le moment',
+                        'programmes' => '',
+                        'formateurFirstname' =>  '',
+                        'formateurLastname' => ''
+                    ];
+                }else{
+                    foreach($matieres as $matiere){
         
-                    $prof = $userRepository->findOneBy(array('matiere'=>$matiereId));
-        
-                    foreach($matiere->getProgrammes() as $programme){
-                        $dataProgramme = array();
-        
-                        $dataProgramme[] =[
-                            'name' => $programme->getName(),
+                        $matiereId = $matiere->getId();
+            
+                        $prof = $userRepository->findOneBy(array('matiere'=>$matiereId));
+            
+                        foreach($matiere->getProgrammes() as $programme){
+                            $dataProgramme = array();
+            
+                            $dataProgramme[] =[
+                                'name' => $programme->getName(),
+                            ];
+                        }
+            
+                        $dataMatiere [] = [
+                            'name' => $matiere->getName(),
+                            'programmes' => $dataProgramme,
+                            'formateurFirstname' =>  $prof->getFirstname(),
+                            'formateurLastname' => $prof->getLastname()
                         ];
                     }
-        
+                }
+            }
+        }else{
+            $classes = $user->getUser()->getClasse();
+            if(!$classes){
+                $dataMatiere [] = [
+                    'name' => 'Vous n`avez pas de classe pour le moment',
+                    'programmes' => '',
+                    'formateurFirstname' =>  '',
+                    'formateurLastname' => '',
+                    'eleveFirstname' => $user->getUser()->getFirstname(),
+                    'eleveLastname' => $user->getUser()->getLastname()
+                ];
+            }else{
+                $matieres = $classes->getMatieres();
+    
+                if($matieres->isEmpty()){
                     $dataMatiere [] = [
-                        'name' => $matiere->getName(),
-                        'programmes' => $dataProgramme,
-                        'formateurFirstname' =>  $prof->getFirstname(),
-                        'formateurLastname' => $prof->getLastname()
+                        'name' => 'Pas de matière pour le moment',
+                        'programmes' => '',
+                        'formateurFirstname' =>  '',
+                        'formateurLastname' => '',
+                        'eleveFirstname' => $user->getUser()->getFirstname(),
+                        'eleveLastname' => $user->getUser()->getLastname()
                     ];
+                }else{
+                    foreach($matieres as $matiere){
+        
+                        $matiereId = $matiere->getId();
+            
+                        $prof = $userRepository->findOneBy(array('matiere'=>$matiereId));
+            
+                        foreach($matiere->getProgrammes() as $programme){
+                            $dataProgramme = array();
+            
+                            $dataProgramme[] =[
+                                'name' => $programme->getName(),
+                            ];
+                        }
+            
+                        $dataMatiere [] = [
+                            'name' => $matiere->getName(),
+                            'programmes' => $dataProgramme,
+                            'formateurFirstname' =>  $prof->getFirstname(),
+                            'formateurLastname' => $prof->getLastname(),
+                            'eleveFirstname' => $user->getUser()->getFirstname(),
+                            'eleveLastname' => $user->getUser()->getLastname()
+                        ];
+                    }
                 }
             }
         }
+        
 
         return $this->render('programme/programe_eleve/index.html.twig', [
             'controller_name' => 'ProgrameEleveController',

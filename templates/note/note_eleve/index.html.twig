@@ -23,6 +23,9 @@
             </thead>
             <tbody>
                 {% for controle in controles %}
+                    {% if app.user.eleve %}
+                        <h2>Voici les notes de votre stagiaire {{controle.eleveFirstname}} {{controle.eleveLastname}}  </h2>
+                    {% endif %}
                     {% if controle.name == 'Vous n`avez pas de classe pour le moment' or controle.name == 'Pas de contrôle' %}
                         <h2>{{controle.name}}</h2>
                     {% else %}
