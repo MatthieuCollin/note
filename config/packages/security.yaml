@@ -31,10 +31,10 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/$, roles:[ ROLE_ADMIN, ROLE_ELEVE, ROLE_FORMATEUR] }
+        - { path: ^/$, roles:[ ROLE_ADMIN, ROLE_ELEVE, ROLE_FORMATEUR, ROLE_TUTEUR] }
         - { path: ^/admin, roles: [ROLE_ADMIN] }
-        - { path: ^/note-eleve, roles: [ROLE_ELEVE] }
-        - { path: ^/programme-eleve, roles: [ROLE_ELEVE] }
+        - { path: ^/note-eleve, roles: [ROLE_ELEVE,ROLE_TUTEUR ] }
+        - { path: ^/programme-eleve, roles: [ROLE_ELEVE, ROLE_TUTEUR] }
         - { path: ^/note-prof, roles: [ROLE_FORMATEUR] }
         - { path: ^/note-prof, roles: [ROLE_FORMATEUR] }
 

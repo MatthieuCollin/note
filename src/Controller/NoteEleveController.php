@@ -16,42 +16,58 @@ class NoteEleveController extends AbstractController
     {
         $userId = $this->getUser();
         $user = $userRepository->findOneBy(array('id'=>$userId));
+        
 
-        $classes = $user->getClasse();
-        if(!$classes){
-            $dataControle [] = [
-                'name' => 'Vous n`avez pas de classe pour le moment',
-                'formateur' => '',
-                'matiere' => '',
-                'note' => ['']
-            ];
+
+        if(!$user->getEleve()){
+            $classes = $user->getClasse();
+            eleve($classes, $userId);
         }else{
-            $controles = $classes->getcontrole();
+            $test = $user->getEleve();
+            dd($test);
+            $userId = $user->getEleve()->getId();
+            $eleve = $userRepository->findOneBy(array('id'=>$userId));
+            $classes = $eleve->getClasse();
+            eleve($classes,$userId );
+        }
 
-            if($controles->isEmpty()){
+        function eleve($classes, $userId){
+            if(!$classes){
                 $dataControle [] = [
-                    'name' => 'Pas de contrôle',
+                    'name' => 'Vous n`avez pas de classe pour le moment',
                     'formateur' => '',
                     'matiere' => '',
                     'note' => ['']
                 ];
-    
             }else{
-                foreach($controles as $controle){
-                    foreach($controle->getNotes() as $note){
-                        if($note->getEleve() == $userId){
-                            $dataNote = $note->getNote();
-                        }
-                    }
+                $controles = $classes->getcontrole();
+
+                if($controles->isEmpty()){
                     $dataControle [] = [
-                        'name' => $controle->getName(),
-                        'formateur' => $controle->getFormateur()->getLastname(),
-                        'matiere' => $controle->getMatiere()->getName(),
-                        'note' => $dataNote
+                        'name' => 'Pas de contrôle',
+                        'formateur' => '',
+                        'matiere' => '',
+                        'note' => ['']
                     ];
+        
+                }else{
+                    foreach($controles as $controle){
+                        foreach($controle->getNotes() as $note){
+                            if($note->getEleve() == $userId){
+                                $dataNote = $note->getNote();
+                            }
+                        }
+                        $dataControle [] = [
+                            'name' => $controle->getName(),
+                            'formateur' => $controle->getFormateur()->getLastname(),
+                            'matiere' => $controle->getMatiere()->getName(),
+                            'note' => $dataNote
+                        ];
+                    }
                 }
             }
         }
+        
         
 
         
