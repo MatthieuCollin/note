@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use App\Entity\Classe;
+use App\Repository\UserRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -21,8 +22,10 @@ class ClasseType extends AbstractType
                 'class' => User::class,
                 'mapped' =>false,
                 // uses the User.username property as the visible option string
-                'choice_label' => 'lastname',
-            
+                'choice_label' => function (User $user) {
+                    return $user->getLastName() . ' ' . $user->getFirstName();
+                },
+                
                 // used to render a select box, check boxes or radios
                 'multiple' => true,
                 'expanded' => false,

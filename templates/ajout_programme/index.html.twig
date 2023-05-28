@@ -13,6 +13,7 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th>Matière</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -21,6 +22,8 @@
             <tr>
                 <td>{{ programme.id }}</td>
                 <td>{{ programme.name }}</td>
+                <td>{{ programme.classe }}</td>
+
                 <td>
                     <a href="{{ path('app_ajout_programme_show', {'id': programme.id}) }}">show</a>
                     <a href="{{ path('app_ajout_programme_edit', {'id': programme.id}) }}">Modifier</a>

@@ -9,6 +9,7 @@ use App\Entity\User;
 use App\Form\ControleType;
 use App\Repository\ControleRepository;
 use App\Repository\NoteRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,21 +21,28 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AjoutControleController extends AbstractController
 {
     #[Route('/', name: 'app_ajout_controle_index', methods: ['GET'])]
-    public function index(ControleRepository $controleRepository): Response
+    public function index(ControleRepository $controleRepository, UserRepository $userRepository): Response
     {
+        $userId = $this->getUser();
+        $user = $userRepository->findOneBy(array('id'=>$userId));
+
         return $this->render('ajout_controle/index.html.twig', [
-            'controles' => $controleRepository->findAll(),
+            'controles' => $user->getControle(),
         ]);
     }
 
     #[Route('/new', name: 'app_ajout_controle_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ControleRepository $controleRepository): Response
+    public function new(Request $request, ControleRepository $controleRepository, UserRepository $userRepository): Response
     {
         $controle = new Controle();
         $form = $this->createForm(ControleType::class, $controle);
         $form->handleRequest($request);
 
+        $userId = $this->getUser();
+        $user = $userRepository->findOneBy(array('id'=>$userId));
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $controle->setFormateur($user);
             $controleRepository->save($controle, true);
 
             return $this->redirectToRoute('app_ajout_controle_index', [], Response::HTTP_SEE_OTHER);
@@ -92,11 +100,12 @@ class AjoutControleController extends AbstractController
         $userrepo = $entityManagerInterface->getRepository(User::class);
         $users = $userrepo->findOneBy(array('classe'=>$controle->getClasse()->getId()));
 
+
         $note = new Note();
 
 
         $form = $this->createForm(NotesType::class, $note, [
-            'users' => $users,
+            'classe_id' => $controle->getClasse()->getId(),
         ]);
         
         $form->handleRequest($request);

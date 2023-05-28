@@ -21,7 +21,9 @@ class MatiereType extends AbstractType
                 'class' => User::class,
             
                 // uses the User.username property as the visible option string
-                'choice_label' => 'lastname',
+                'choice_label' => function (User $user) {
+                    return $user->getLastName() . ' ' . $user->getFirstName();
+                },
                 'mapped' =>false,
 
                 // used to render a select box, check boxes or radios

@@ -3,6 +3,7 @@
 namespace App\Form;
 use App\Entity\Note;
 use App\Entity\User;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -13,7 +14,7 @@ class NotesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $users = $options['users'];
+        $classeId = $options['classe_id'];
 
         $builder
             ->add('note')
@@ -22,10 +23,18 @@ class NotesType extends AbstractType
                 'class' => User::class,
             
                 // uses the User.username property as the visible option string
-                'choice_label' => 'lastname',
+                'choice_label' => function (User $user) {
+                    return $user->getLastName() . ' ' . $user->getFirstName();
+                },
             
                 // used to render a select box, check boxes or radios
                 'multiple' => false,
+                'query_builder' => function (EntityRepository $er) use ($classeId) {
+                    return $er->createQueryBuilder('u')
+                        ->join('u.classe', 'c') // Assuming a many-to-many relation between User and Classe
+                        ->where('c.id = :classeId')
+                        ->setParameter('classeId', $classeId); // Your specific Classe ID
+                },
                 'expanded' => false,
             ]);     
     }
@@ -34,7 +43,7 @@ class NotesType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Note::class,
-            'users' =>[]
+            'classe_id' => null,
         ]);
     }
 }

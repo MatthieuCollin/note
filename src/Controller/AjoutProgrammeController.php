@@ -16,8 +16,17 @@ class AjoutProgrammeController extends AbstractController
     #[Route('/', name: 'app_ajout_programme_index', methods: ['GET'])]
     public function index(ProgrammeRepository $programmeRepository): Response
     {
+        $programmes = $programmeRepository->findAll();
+        foreach($programmes as $programme){
+            $data [] =[
+                'name' => $programme->getName(),
+                'classe' => $programme->getMatiere()->getName(),
+                'id' => $programme->getId()
+            ];
+        }
+
         return $this->render('ajout_programme/index.html.twig', [
-            'programmes' => $programmeRepository->findAll(),
+            'programmes' => $data,
         ]);
     }
 
