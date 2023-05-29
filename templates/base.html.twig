@@ -43,11 +43,22 @@
         </div>
         <footer>
             <div class="parent">
-                <a class="div1" href="">Accueil</a>
-                <a class="div2" href="">Programmes</a>
-                <a class="div3" href="">Notes</a>
-                <div class="div4">Copyright by Formatech</div>
+                {% if app.user.roles|first == "ROLE_ELEVE" or app.user.roles|first == "ROLE_TUTEUR"%}
+                    <a class="div1" href={{path('app_home')}}>Accueil</a>
+                    <a class="div1" href={{path('app_programme_eleve')}}>Programmes</a>
+                    <a class="div1" href={{path('app_note_eleve')}}>Notes</a>
+                {% elseif app.user.roles|first == "ROLE_FORMATEUR"%}
+                    <a class="div1" href={{path('app_home')}}>Accueil</a>
+                    <a class="div1" href={{path('app_programme_prof')}}>Programmes</a>
+                    <a class="div1" href={{path('app_note_prof')}}>Notes</a>
+                {% elseif app.user.roles|first == "ROLE_ADMIN"%}
+                    <a class="div1" href={{path('app_home')}}>Accueil</a>
+                    <a class="div1" href={{path('app_admin')}}>Admin</a>
+                    <a class="div1" href={{path('app_ajout_classe_index')}}>Classe</a>
+                    <a class="div1" href={{path('app_ajout_matiere_index')}}>Matiere</a>
+                {% endif %}
             </div>
+            <p>Copyright by Formatech</p>
         </footer>
     </body> 
 </html>
