@@ -5,12 +5,14 @@
 {% block title %}Hello ProgrameEleveController!{% endblock %}
 
 {% block body %}
-<a href={{path('app_ajout_programme_index')}} type="submit">Ajouter</a>
+<a class="button" href={{path('app_ajout_programme_index')}} type="submit">Ajouter</a>
+
+<div class="container">
     {% for matiere in matieres %}
         {% if matiere.name == 'pas de matière' %}
             <h2>pas de matière</h2>
         {% else %}
-            <div class="cadre">
+            <div class="box">
                 <p class="titre">Cours : {{matiere.name}} - Classe : 
                     {% for classe in matiere.classes %}
                         {{classe.classname}}
@@ -18,11 +20,11 @@
                 </p>
                 <table>
                     <tbody>
-                        <tr class="ligneblanche">
-                            <td>Programmes</td>
-                        </tr>
+                        <thead>
+                            <th>Programmes</th>
+                        </thead>
                         {% for programme in matiere.programmes %}
-                        <tr class="ligneblanche">
+                        <tr>
                             <td>{{programme.name}}</td>
                         </tr>
                         {% endfor %}
@@ -33,5 +35,6 @@
         
     {% endfor %}
 
+</div>
 
 {% endblock %}

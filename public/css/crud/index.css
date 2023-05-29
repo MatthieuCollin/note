@@ -1,3 +1,14 @@
+.body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1{
+  font-weight: 1000;
+  font-size: 1vw;
+}
+
 .container{
   width: 100%;
   font-weight: bold;
@@ -6,7 +17,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  align-items: center;
 }
 
 .box {
@@ -73,6 +83,9 @@
     text-decoration: none;
     transition: .2s;
     margin-left: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .button:hover{
@@ -99,6 +112,18 @@ a img{
   
 }
 
+.box form{
+  display: flex;
+  flex-direction: column;
+}
+
+.box form #classe div,.box form #matiere div, .box form #notes div, .box form #programme div, .box form #controle div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
 select {
   padding: 10px; 
   font-size: 16px; 
@@ -121,4 +146,22 @@ select option {
 select:focus {
   outline: none; 
   box-shadow: 0 0 5px #bfbfbf; 
+}
+
+#matiere_name, #classe_name, #programme_name, #controle_name{
+	border: none;
+	border-bottom: 2px solid #D1D1D4;
+	background: none;
+	padding: 10px;
+	padding-left: 24px;
+	font-weight: 700;
+	width: 75%;
+	transition: .2s;
+}
+
+#matiere_name:active, #classe_name:active, #programme_name:active, #controle_name:active,
+#matiere_name:focus, #classe_name:focus, #programme_name:focus, #controle_name:focus,
+#matiere_name:hover, #classe_name:hover, #programme_name:hover, #controle_name:hover {
+	outline: none;
+	border-bottom-color: #FF8E2B;
 }

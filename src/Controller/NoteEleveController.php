@@ -24,7 +24,9 @@ class NoteEleveController extends AbstractController
                     'name' => 'Vous n`avez pas de classe pour le moment',
                     'formateur' => '',
                     'matiere' => '',
-                    'note' => ['']
+                    'note' => [''],
+                    'eleveFirstname' => $user->getFirstname(),
+                    'eleveLastname' => $user->getLastname()
                 ];
             }else{
                 $controles = $classes->getcontrole();
@@ -34,7 +36,9 @@ class NoteEleveController extends AbstractController
                         'name' => 'Pas de contrôle',
                         'formateur' => '',
                         'matiere' => '',
-                        'note' => ['']
+                        'note' => [''],
+                        'eleveFirstname' => $user->getFirstname(),
+                        'eleveLastname' => $user->getLastname()
                     ];
         
                 }else{
@@ -42,13 +46,16 @@ class NoteEleveController extends AbstractController
                         foreach($controle->getNotes() as $note){
                             if($note->getEleve() == $userId){
                                 $dataNote = $note->getNote();
+                                dd($dataNote);
                             }
                         }
                         $dataControle [] = [
                             'name' => $controle->getName(),
                             'formateur' => $controle->getFormateur()->getLastname(),
                             'matiere' => $controle->getMatiere()->getName(),
-                            'note' => $dataNote
+                            'note' => 'bouh',
+                            'eleveFirstname' => $user->getFirstname(),
+                            'eleveLastname' => $user->getLastname()
                         ];
                     }
                 }

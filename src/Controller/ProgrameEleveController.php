@@ -25,7 +25,9 @@ class ProgrameEleveController extends AbstractController
                     'name' => 'Vous n`avez pas de classe pour le moment',
                     'programmes' => '',
                     'formateurFirstname' =>  '',
-                    'formateurLastname' => ''
+                    'formateurLastname' => '',
+                    'eleveFirstname' => $user->getFirstname(),
+                    'eleveLastname' => $user->getLastname()
                 ];
             }else{
                 $matieres = $classes->getMatieres();
@@ -35,7 +37,9 @@ class ProgrameEleveController extends AbstractController
                         'name' => 'Pas de matière pour le moment',
                         'programmes' => '',
                         'formateurFirstname' =>  '',
-                        'formateurLastname' => ''
+                        'formateurLastname' => '',
+                        'eleveFirstname' => $user->getFirstname(),
+                        'eleveLastname' => $user->getLastname()
                     ];
                 }else{
                     foreach($matieres as $matiere){
@@ -56,7 +60,9 @@ class ProgrameEleveController extends AbstractController
                             'name' => $matiere->getName(),
                             'programmes' => $dataProgramme,
                             'formateurFirstname' =>  $prof->getFirstname(),
-                            'formateurLastname' => $prof->getLastname()
+                            'formateurLastname' => $prof->getLastname(),
+                            'eleveFirstname' => $user->getFirstname(),
+                            'eleveLastname' => $user->getLastname()
                         ];
                     }
                 }

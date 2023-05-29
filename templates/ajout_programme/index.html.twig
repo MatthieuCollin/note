@@ -25,8 +25,8 @@
                 <td>{{ programme.classe }}</td>
 
                 <td>
-                    <a href="{{ path('app_ajout_programme_show', {'id': programme.id}) }}">show</a>
-                    <a href="{{ path('app_ajout_programme_edit', {'id': programme.id}) }}">Modifier</a>
+                    <a href="{{ path('app_ajout_programme_show', {'id': programme.id}) }}"><img src="{{ asset('/img/voir.png') }}" alt="voir"></a>
+                    <a href="{{ path('app_ajout_programme_edit', {'id': programme.id}) }}"><img src="{{ asset('/img/bouton-modifier.png')}}"></a>
                 </td>
             </tr>
         {% else %}
@@ -37,6 +37,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_ajout_programme_new') }}">Créer</a>
+    <a class="button" href="{{ path('app_ajout_programme_new') }}">Créer</a>
     </div>
 {% endblock %}

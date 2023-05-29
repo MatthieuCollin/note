@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class NotesType extends AbstractType
@@ -17,7 +18,9 @@ class NotesType extends AbstractType
         $classeId = $options['classe_id'];
 
         $builder
-            ->add('note')
+            ->add('note', TextType::class, [
+                'label' => 'Note de l`élève',
+            ])
             ->add('eleve', EntityType::class, [
                 // looks for choices from this entity
                 'class' => User::class,

@@ -7,16 +7,10 @@
 {% block body %}
 
 {% for matiere in matieres %}
-{% if app.user.eleve %}
-    <h2>Voici les Matières de votre stagiaire {{matiere.eleveFirstname}} {{matiere.eleveLastname}}  </h2>
-{% endif %}
 {% if matiere.name == 'Pas de matière pour le moment' or matiere.name == 'Vous n`avez pas de classe pour le moment' %}
         <h2>{{matiere.name}}</h2>
 {% else %}
 <div class="container">
-    {% if app.user.eleve %}
-        <h2>Voici les Matières de votre stagiaire {{matiere.eleveFirstname}} {{matiere.eleveLastname}}  </h2>
-    {% endif %}
     <div class="box">
 
         <h2 class="titre">Cours : {{matiere.name}}</h2>

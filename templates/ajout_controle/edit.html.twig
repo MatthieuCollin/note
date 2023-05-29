@@ -6,11 +6,11 @@
 
 {% block body %}
 <div class="box">
-    <h1>Edit Controle</h1>
+    <h1>Modifier le contrôle</h1>
 
-    {{ include('ajout_controle/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('ajout_controle/_form.html.twig', {'button_label': 'Enrengistrer'}) }}
 
-    <a href="{{ path('app_ajout_controle_index') }}">Retour a la liste</a>
+    <a class="button" href="{{ path('app_ajout_controle_index') }}">Retour a la liste</a>
 
     {{ include('ajout_controle/_delete_form.html.twig') }}
 </div>
