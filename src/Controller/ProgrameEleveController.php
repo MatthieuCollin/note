@@ -46,7 +46,6 @@ class ProgrameEleveController extends AbstractController
         
                         $matiereId = $matiere->getId();
             
-                        $prof = $userRepository->findOneBy(array('matiere'=>$matiereId));
             
                         foreach($matiere->getProgrammes() as $programme){
                             $dataProgramme = array();
@@ -55,12 +54,14 @@ class ProgrameEleveController extends AbstractController
                                 'name' => $programme->getName(),
                             ];
                         }
-            
+                        $prof = $userRepository->findOneBy(array('matiere'=>$matiereId));
+
+
                         $dataMatiere [] = [
                             'name' => $matiere->getName(),
                             'programmes' => $dataProgramme,
-                            'formateurFirstname' =>  $prof->getFirstname(),
-                            'formateurLastname' => $prof->getLastname(),
+                            'formateurFirstname' =>  $prof->getLastname(),
+                            'formateurLastname' => $prof->getFirstname(),
                             'eleveFirstname' => $user->getFirstname(),
                             'eleveLastname' => $user->getLastname()
                         ];
@@ -96,6 +97,8 @@ class ProgrameEleveController extends AbstractController
                         $matiereId = $matiere->getId();
             
                         $prof = $userRepository->findOneBy(array('matiere'=>$matiereId));
+
+                        dd($prof);
             
                         foreach($matiere->getProgrammes() as $programme){
                             $dataProgramme = array();
