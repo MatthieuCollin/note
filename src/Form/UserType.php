@@ -46,13 +46,14 @@ class UserType extends AbstractType
             'class' => User::class,
             'mapped' =>true,
             'label' => "Si l'utilisateur est un tuteur, lui assigné la personne qu'il supervise",
-
+            'placeholder' => 'Veuillez choisir un élève',
             // uses the User.username property as the visible option string
             'choice_label' => 'lastname',
         
             // used to render a select box, check boxes or radios
             'multiple' => false,
             'expanded' => false,
+            'required' => false,
         ])
         ->add('save', SubmitType::class, [
             'label' => "Enregistrer les modifications"
@@ -77,6 +78,7 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'default_value' => null,
         ]);
     }
 }
