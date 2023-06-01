@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href={{asset('css/crud/index.css')}}>
+{% endblock %}
+{% block title %}New Programme{% endblock %}
+
+{% block body %}
+<div class="box">
+    <h1>Créer Programme</h1>
+
+    {{ include('ajout_programme/_form.html.twig') }}
+
+    <a class="button" href="{{ path('app_ajout_programme_index') }}">Retour a la liste</a>
+</div>
+{% endblock %}

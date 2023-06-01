@@ -6,54 +6,26 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Gestion :</h1>
-
-<div class="wrapper">
-
-
-    <table>
-        <tr class="tHead">
-            <th>Prénom</th>
-            <th>Nom</th>
-            <th>Mail</th>
-            <th>Rôles</th>
-            <th>Action</th>
-        </tr>
-        <tr class="first">
-            <td>Matthieu</td>
-            <td>Collin</td>
-            <td>matthcollin23@gmail.com</td>
-            <td>gestionnaire</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Matthieu</td>
-            <td>Collin</td>
-            <td>matthcollin23@gmail.com</td>
-            <td>gestionnaire</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Matthieu</td>
-            <td>Collin</td>
-            <td>matthcollin23@gmail.com</td>
-            <td>gestionnaire</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Matthieu</td>
-            <td>Collin</td>
-            <td>matthcollin23@gmail.com</td>
-            <td>gestionnaire</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Matthieu</td>
-            <td>Collin</td>
-            <td>matthcollin23@gmail.com</td>
-            <td>gestionnaire</td>
-            <td></td>
-        </tr>
-    </table>
-</div>
+    <div class="container">
+        <a class="button" href={{path('app_admin_ajout')}}>Ajouter Admin</a>
+        <div class="box">
+            <table>
+                <thead>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Mail</th>
+                    <th>Rôles</th>
+                </thead>
+                {% for user in users %}
+                    <tr>
+                        <td>{{user.firstname}}</td>
+                        <td>{{user.lastname}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.roles|first}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    
 {% endblock %}

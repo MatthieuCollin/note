@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href={{asset('css/crud/index.css')}}>
+{% endblock %}
+{% block title %}Matiere{% endblock %}
+
+{% block body %}
+<div class="box">
+    <h1>Matiere</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ matiere.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ matiere.name }}</td>
+            </tr>
+            <tr>
+                <th>Formateurs</th>
+                <td>
+                    {% for formateur in formateurs%}
+                        {{ formateur.lastname }} {{ formateur.firstname }},
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>Classe</th>
+                {% for classe in classes%}
+                <td>{{ classe.name }}</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+
+    <a class='button' href="{{ path('app_ajout_matiere_index') }}">Retour a la liste</a>
+
+    <a class='button' href="{{ path('app_ajout_matiere_edit', {'id': matiere.id}) }}">Modifier</a>
+
+</div>
+{% endblock %}

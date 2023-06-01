@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Repository\ClasseRepository;
+use App\Repository\ControleRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,26 +12,165 @@ use Symfony\Component\Routing\Annotation\Route;
 class NoteEleveController extends AbstractController
 {
     #[Route('/note-eleve', name: 'app_note_eleve')]
-    public function index(): Response
+    public function index(ControleRepository $controleRepository, UserRepository $userRepository): Response
     {
-        return $this->render('note_eleve/index.html.twig', [
-            'controller_name' => 'NoteEleveController',
-        ]);
-    }
+        $userId = $this->getUser();
+        $user = $userRepository->findOneBy(array('id'=>$userId));
+        
+        if(!$user->getUser()){
+            $classes = $user->getClasse();
+            if(!$classes){
+                $dataControle [] = [
+                    'name' => 'Vous n`avez pas de classe pour le moment',
+                    'formateur' => '',
+                    'matiere' => '',
+                    'note' => [''],
+                    'eleveFirstname' => $user->getFirstname(),
+                    'eleveLastname' => $user->getLastname()
+                ];
+            }else{
+                $controles = $classes->getcontrole();
 
-    #[Route('/ajout-note-prof', name: 'app_ajout_note_prof')]
-    public function ajoutNoteProf(): Response
-    {
-        return $this->render('ajout_note_prof/index.html.twig', [
+                if($controles->isEmpty()){
+                    $dataControle [] = [
+                        'name' => 'Pas de contrôle',
+                        'formateur' => '',
+                        'matiere' => '',
+                        'note' => [''],
+                        'eleveFirstname' => $user->getFirstname(),
+                        'eleveLastname' => $user->getLastname()
+                    ];
+        
+                }else{
+                    foreach($controles as $controle){
+                        foreach($controle->getNotes() as $note){
+                            if($note->getEleve() == $userId){
+                                $dataNote = $note->getNote();
+                                dd($dataNote);
+                            }
+                        }
+                        $dataControle [] = [
+                            'name' => $controle->getName(),
+                            'formateur' => $controle->getFormateur()->getLastname(),
+                            'matiere' => $controle->getMatiere()->getName(),
+                            'note' => 'bouh',
+                            'eleveFirstname' => $user->getFirstname(),
+                            'eleveLastname' => $user->getLastname()
+                        ];
+                    }
+                }
+            }
+        }else{
+            $userId = $user->getUser()->getId();
+            $eleve = $userRepository->findOneBy(array('id'=>$userId));
+            $classes = $eleve->getClasse();
+            if(!$classes){
+                $dataControle [] = [
+                    'name' => 'Vous n`avez pas de classe pour le moment',
+                    'formateur' => '',
+                    'matiere' => '',
+                    'note' => [''],
+                    'eleveFirstname' => $user->getUser()->getFirstname(),
+                    'eleveLastname' => $user->getUser()->getLastname()
+                ];
+            }else{
+                $controles = $classes->getcontrole();
+
+                if($controles->isEmpty()){
+                    $dataControle [] = [
+                        'name' => 'Pas de contrôle',
+                        'formateur' => '',
+                        'matiere' => '',
+                        'note' => ['']
+                    ];
+        
+                }else{
+                    foreach($controles as $controle){
+                        foreach($controle->getNotes() as $note){
+                            if($note->getEleve() == $userId){
+                                $dataNote = $note->getNote();
+                            }
+                        }
+                        $dataControle [] = [
+                            'name' => $controle->getName(),
+                            'formateur' => $controle->getFormateur()->getLastname(),
+                            'matiere' => $controle->getMatiere()->getName(),
+                            'note' => $dataNote,
+                            'eleveFirstname' => $user->getUser()->getFirstname(),
+                            'eleveLastname' => $user->getUser()->getLastname()
+                        ];
+                    }
+                }
+            }
+        }
+
+        return $this->render('note/note_eleve/index.html.twig', [
             'controller_name' => 'NoteEleveController',
+            'controles' => $dataControle
         ]);
     }
 
     #[Route('/note-prof', name: 'app_note_prof')]
-    public function noteProf(): Response
+    public function noteProf(ControleRepository $controleRepository, UserRepository $userRepository): Response
     {
-        return $this->render('note_prof/index.html.twig', [
+
+        $userId = $this->getUser();
+        $controles = $controleRepository->findBy(array('formateur'=>$userId));
+
+        if(!$controles){
+            $dataNote[
+                ]=[
+                    'note' => 'pas de notes',
+                    'firstname' =>'',
+                    'lastname'=>''
+                ];
+
+            $dataControle [] = [
+                'name' => 'Pas de contrôle',
+                'formateur' => '',
+                'matiere' => '',
+                'notes' => $dataNote
+            ];
+
+        }else{
+            foreach($controles as $controle){
+                $notes = $controle->getNotes();
+                if($notes->isEmpty()){
+                    $dataNote = array();
+    
+                    $dataNote[]=[
+                        'note' => 'pas de notes',
+                        'firstname' =>'',
+                        'lastname'=>''
+                    ];
+                }else{
+                    foreach($notes as $note){
+                        $dataNote = array();
+    
+                        $dataNote [] =[
+                            'note' => $note->getNote(),
+                            'firstname' => $note->getEleve()->getFirstname(),
+                            'lastname'=> $note->getEleve()->getLastname()
+                        ];
+                    }
+                }
+                
+                $dataControle [] = [
+                    'name' => $controle->getName(),
+                    'formateur' => $controle->getFormateur()->getLastname(),
+                    'matiere' => $controle->getMatiere()->getName(),
+                    'notes' => $dataNote
+                ];
+            }
+        }
+
+
+        
+
+        return $this->render('note/note-prof/index.html.twig', [
             'controller_name' => 'NoteEleveController',
+            'controles' => $dataControle
+
         ]);
     }
 }

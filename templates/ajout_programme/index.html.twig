@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href={{asset('css/crud/index.css')}}>
+{% endblock %}
+{% block title %}Programme index{% endblock %}
+
+{% block body %}
+<div class="box">
+    <h1>Programme index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Matière</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for programme in programmes %}
+            <tr>
+                <td>{{ programme.id }}</td>
+                <td>{{ programme.name }}</td>
+                <td>{{ programme.classe }}</td>
+
+                <td>
+                    <a href="{{ path('app_ajout_programme_show', {'id': programme.id}) }}"><img src="{{ asset('/img/voir.png') }}" alt="voir"></a>
+                    <a href="{{ path('app_ajout_programme_edit', {'id': programme.id}) }}"><img src="{{ asset('/img/bouton-modifier.png')}}"></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="button" href="{{ path('app_ajout_programme_new') }}">Créer</a>
+    </div>
+{% endblock %}

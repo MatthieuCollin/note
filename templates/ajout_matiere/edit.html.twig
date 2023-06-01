@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href={{asset('css/crud/index.css')}}>
+{% endblock %}
+{% block title %}Edit Matiere{% endblock %}
+
+{% block body %}
+<div class="box">
+    <h1>Edit Matiere</h1>
+
+    {{ include('ajout_matiere/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_ajout_matiere_index') }}">Retour a la liste</a>
+</div>
+{% endblock %}

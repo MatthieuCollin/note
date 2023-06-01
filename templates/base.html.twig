@@ -9,7 +9,7 @@
 
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-        {% endblock %}
+        {% endblock %} 
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
@@ -19,32 +19,46 @@
         <header>
             <nav>
                 <img src={{asset('img/logo.png')}} alt="logo">
-
-                <div class="bouttonFooter">
-                    <a href={{path('app_home')}}>Accueil</a>
-                </div>
-                <div class="bouttonFooter">
-                    <a href={{path('app_programme_eleve')}}>Programmes</a>
-                </div>
-                <div class="bouttonFooter">
-                    <a href={{path('app_note_eleve')}}>Notes</a>
-                </div>
+                {% if app.user.roles|first == "ROLE_ELEVE" or app.user.roles|first == "ROLE_TUTEUR"%}
+                    <a class="underline" href={{path('app_home')}}>Accueil</a>
+                    <a class="underline" href={{path('app_programme_eleve')}}>Programmes</a>
+                    <a class="underline" href={{path('app_note_eleve')}}>Notes</a>
+                {% elseif app.user.roles|first == "ROLE_FORMATEUR"%}
+                    <a class="underline" href={{path('app_home')}}>Accueil</a>
+                    <a class="underline" href={{path('app_programme_prof')}}>Programmes</a>
+                    <a class="underline" href={{path('app_note_prof')}}>Notes</a>
+                {% elseif app.user.roles|first == "ROLE_ADMIN"%}
+                    <a class="underline" href={{path('app_home')}}>Accueil</a>
+                    <a class="underline" href={{path('app_admin')}}>Admin</a>
+                    <a class="underline" href={{path('app_ajout_classe_index')}}>Classe</a>
+                    <a class="underline" href={{path('app_ajout_matiere_index')}}>Matiere</a>
+                {% endif %}
             </nav>
+            <a class="underline deco" href={{path('app_modifyAdmin', { 'id': app.user.id })}}>{{app.user.firstname }} {{app.user.lastname }}</p>
+            <a class="underline deco" href={{path('app_logout')}}>Déconnexion</a>
         </header>
-        <div class="content">
+        <div class="body">
             {% block body %}
-
             {% endblock %}
         </div>
         <footer>
-                <ul>
-                    <li><a href="">Accueil</a></li>
-                    <li><a href="">Programmes</a></li>
-                    <li><a href="">Notes</a></li>
-                </ul>
-
-            <img src={{asset('img/logo.png')}} alt="logo">
-            <div></div>
+            <div class="parent">
+                {% if app.user.roles|first == "ROLE_ELEVE" or app.user.roles|first == "ROLE_TUTEUR"%}
+                    <a class="div1" href={{path('app_home')}}>Accueil</a>
+                    <a class="div1" href={{path('app_programme_eleve')}}>Programmes</a>
+                    <a class="div1" href={{path('app_note_eleve')}}>Notes</a>
+                {% elseif app.user.roles|first == "ROLE_FORMATEUR"%}
+                    <a class="div1" href={{path('app_home')}}>Accueil</a>
+                    <a class="div1" href={{path('app_programme_prof')}}>Programmes</a>
+                    <a class="div1" href={{path('app_note_prof')}}>Notes</a>
+                {% elseif app.user.roles|first == "ROLE_ADMIN"%}
+                    <a class="div1" href={{path('app_home')}}>Accueil</a>
+                    <a class="div1" href={{path('app_admin')}}>Admin</a>
+                    <a class="div1" href={{path('app_ajout_classe_index')}}>Classe</a>
+                    <a class="div1" href={{path('app_ajout_matiere_index')}}>Matiere</a>
+                {% endif %}
+            </div>
+            <p>Copyright by Formatech</p>
         </footer>
-    </body>
+    </body> 
 </html>

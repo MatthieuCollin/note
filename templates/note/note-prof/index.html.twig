@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href={{asset('/css/noteProf/index.css')}}>
+        {% endblock %}
+{% block title %}Hello ProgrameEleveController!{% endblock %}
+
+{% block body %}
+<a class="button" href={{path('app_ajout_controle_index')}} type="submit">Ajouter contrôles/notes</a>
+<div class="container">
+    {% for controle in controles %}
+        {% if controle.name == 'Pas de contrôle' %}
+            <h2>Pas de controle</h2>
+        {% else %}
+            <div class="box">
+                <p class="titre">Controle : {{controle.name}}</p>
+                <table>
+                    <colgroup>
+                        <col span="1" style="width: 50%;">
+                        <col span="1" style="width: 50%;">
+                    </colgroup>
+                    <tbody>
+                        <thead class="ligneblanche">
+                            <th>Notes</th>
+                            <th>Élèves</th>
+                        </thead>
+                        {% for note in controle.notes %}
+                            <tr class="lignebleu">
+                                <td>{{note.note}}</td>
+                                <td>{{note.firstname}} {{note.lastname}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

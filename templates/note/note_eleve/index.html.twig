@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href={{asset('/css/noteEleve/index.css')}}>
+        {% endblock %}
+{% block title %}Hello NoteEleveController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="box">
+        <h2 class="titre">Mes notes :</h2>
+        <table>
+            <colgroup>
+                <col span="1" style="width: 25%;">
+                <col span="1" style="width: 25%;">
+                <col span="1" style="width: 25%;">
+                <col span="1" style="width: 25%;">
+            </colgroup>
+            <thead>
+                <th>Notes</th>
+                <th>Nom du contrôle</th>
+                <th>Matières</th>
+                <th>formateurs</th>
+            </thead>
+            <tbody>
+                {% for controle in controles %}
+                    {% if controle.name == 'Vous n`avez pas de classe pour le moment' or controle.name == 'Pas de contrôle' %}
+                        <h2>{{controle.name}}</h2>
+                    {% else %}
+                        <tr class="lignebleu">
+                        <td>{{controle.note}}</td>
+                        <td>{{controle.name}}</td>
+                        <td>{{controle.matiere}}</td>
+                        <td>{{controle.formateur}}</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

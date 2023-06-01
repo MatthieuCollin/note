@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href={{asset('css/crud/index.css')}}>
+{% endblock %}
+{% block title %}Controle{% endblock %}
+
+{% block body %}
+<div class="box">
+    <h1>Controle</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ controle.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ controle.name }}</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <th>Notes</th>
+                <th>Élèves</th>
+            </tr>
+            {% for note in notes %}
+                <tr>
+                    <th>{{note.note}}</th>
+                    <th>{{note.firstname}} {{note.lastname}}</th>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="button" href="{{ path('app_ajout_controle_index') }}">Retour a la liste</a>
+
+    <a class="button" href="{{ path('app_ajout_controle_edit', {'id': controle.id}) }}">Modifier</a>
+
+    {{ include('ajout_controle/_delete_form.html.twig') }}
+</div>
+{% endblock %}

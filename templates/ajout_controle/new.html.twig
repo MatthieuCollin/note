@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href={{asset('css/crud/index.css')}}>
+{% endblock %}
+{% block title %}New Controle{% endblock %}
+
+{% block body %}
+<div class="box">
+    <h1>Créer Controle</h1>
+
+    {{ include('ajout_controle/_form.html.twig') }}
+
+    <a class="button" href="{{ path('app_ajout_controle_index') }}">Retour a la liste</a>
+</div>
+{% endblock %}
