@@ -10,10 +10,11 @@
             <p>Vous êtes actuellement dans la classe : {{app.user.classe.name}}</p>
             <p>Pour toute assistance, veuillez contacter l'administrateur de votre école</p>
         {% elseif app.user.roles|first == "ROLE_FORMATEUR"%}
-            <p>Ici, vous pouvez accéder aux notes et aux programmes que votre stagiaire ont obtenues récemment. </p>
             <p>Pour toute assistance, veuillez contacter l'administrateur de votre école</p>
-        {% elseif app.user.roles|first == "ROLE_TUTEUR"%}
             <p>Ici, vous pouvez ajouter des notes et des programmes aux matières et au classes qui vous sont associées</p>
+
+        {% elseif app.user.roles|first == "ROLE_TUTEUR"%}
+            <p>Ici, vous pouvez accéder aux notes et aux programmes que votre stagiaire ont obtenues récemment. </p>
             <p>Pour toute assistance, veuillez contacter l'administrateur de l'école</p>
         {% elseif app.user.roles|first == "ROLE_ADMIN"%}
             <p>Ici, vous pouvez gérer les utilisateurs, les classes et les matières de votre centre de formation. </p>

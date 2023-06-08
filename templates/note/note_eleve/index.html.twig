@@ -2,7 +2,7 @@
         {% block stylesheets %}
             <link rel="stylesheet" href={{asset('/css/noteEleve/index.css')}}>
         {% endblock %}
-{% block title %}Hello NoteEleveController!{% endblock %}
+{% block title %}Contrôles{% endblock %}
 
 {% block body %}
 <div class="container">
@@ -27,10 +27,18 @@
                         <h2>{{controle.name}}</h2>
                     {% else %}
                         <tr class="lignebleu">
-                        <td>{{controle.note}}</td>
+                        <td>
+                            {% for controle in controle.notes %}
+                                {% if controle.eleve.id == app.user.id %}
+                                    {{controle.note}}
+                                {% else %}
+                                    Note non précisé
+                                {% endif %}
+                            {% endfor %}        
+                        </td>
                         <td>{{controle.name}}</td>
-                        <td>{{controle.matiere}}</td>
-                        <td>{{controle.formateur}}</td>
+                        <td>{{controle.matiere.name}}</td>
+                        <td>{{controle.formateur.lastname}}</td>
                     </tr>
                     {% endif %}
                 {% endfor %}

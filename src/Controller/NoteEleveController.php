@@ -12,101 +12,35 @@ use Symfony\Component\Routing\Annotation\Route;
 class NoteEleveController extends AbstractController
 {
     #[Route('/note-eleve', name: 'app_note_eleve')]
-    public function index(ControleRepository $controleRepository, UserRepository $userRepository): Response
+    public function index( UserRepository $userRepository): Response
     {
+
+        $dataControle = [];
+
         $userId = $this->getUser();
         $user = $userRepository->findOneBy(array('id'=>$userId));
-        
-        if(!$user->getUser()){
-            $classes = $user->getClasse();
-            if(!$classes){
-                $dataControle [] = [
-                    'name' => 'Vous n`avez pas de classe pour le moment',
-                    'formateur' => '',
-                    'matiere' => '',
-                    'note' => [''],
-                    'eleveFirstname' => $user->getFirstname(),
-                    'eleveLastname' => $user->getLastname()
-                ];
-            }else{
-                $controles = $classes->getcontrole();
 
-                if($controles->isEmpty()){
-                    $dataControle [] = [
-                        'name' => 'Pas de contrôle',
-                        'formateur' => '',
-                        'matiere' => '',
-                        'note' => [''],
-                        'eleveFirstname' => $user->getFirstname(),
-                        'eleveLastname' => $user->getLastname()
-                    ];
-        
-                }else{
-                    foreach($controles as $controle){
-                        foreach($controle->getNotes() as $note){
-                            if($note->getEleve() == $userId){
-                                $dataNote = $note->getNote();
-                                dd($dataNote);
-                            }
-                        }
-                        $dataControle [] = [
-                            'name' => $controle->getName(),
-                            'formateur' => $controle->getFormateur()->getLastname(),
-                            'matiere' => $controle->getMatiere()->getName(),
-                            'note' => 'bouh',
-                            'eleveFirstname' => $user->getFirstname(),
-                            'eleveLastname' => $user->getLastname()
-                        ];
-                    }
-                }
-            }
+        if($user->getRoles()[0] == "ROLE_TUTEUR"){
+            $eleve = $user->getUser();
         }else{
-            $userId = $user->getUser()->getId();
-            $eleve = $userRepository->findOneBy(array('id'=>$userId));
-            $classes = $eleve->getClasse();
-            if(!$classes){
-                $dataControle [] = [
-                    'name' => 'Vous n`avez pas de classe pour le moment',
-                    'formateur' => '',
-                    'matiere' => '',
-                    'note' => [''],
-                    'eleveFirstname' => $user->getUser()->getFirstname(),
-                    'eleveLastname' => $user->getUser()->getLastname()
-                ];
-            }else{
-                $controles = $classes->getcontrole();
+            $eleve = $user;
+        }
 
-                if($controles->isEmpty()){
-                    $dataControle [] = [
-                        'name' => 'Pas de contrôle',
-                        'formateur' => '',
-                        'matiere' => '',
-                        'note' => ['']
-                    ];
-        
-                }else{
-                    foreach($controles as $controle){
-                        foreach($controle->getNotes() as $note){
-                            if($note->getEleve() == $userId){
-                                $dataNote = $note->getNote();
-                            }
-                        }
-                        $dataControle [] = [
-                            'name' => $controle->getName(),
-                            'formateur' => $controle->getFormateur()->getLastname(),
-                            'matiere' => $controle->getMatiere()->getName(),
-                            'note' => $dataNote,
-                            'eleveFirstname' => $user->getUser()->getFirstname(),
-                            'eleveLastname' => $user->getUser()->getLastname()
-                        ];
-                    }
-                }
-            }
+        $classes = $eleve->getClasse();
+        if(!$classes){
+            $dataControle [] = [
+                'name' => 'Vous n`avez pas de classe pour le moment',
+                'formateur' => '',
+                'matiere' => '',
+                'note' => ['']
+            ];
+        }else{
+            $controles = $classes->getControle();
         }
 
         return $this->render('note/note_eleve/index.html.twig', [
             'controller_name' => 'NoteEleveController',
-            'controles' => $dataControle
+            'controles' => $controles
         ]);
     }
 

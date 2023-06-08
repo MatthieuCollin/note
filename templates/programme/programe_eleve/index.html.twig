@@ -2,7 +2,7 @@
         {% block stylesheets %}
             <link rel="stylesheet" href={{asset('/css/programmeEleve/index.css')}}>
         {% endblock %}
-{% block title %}Hello ProgrameEleveController!{% endblock %}
+{% block title %}Programmes{% endblock %}
 
 {% block body %}
 
@@ -16,16 +16,23 @@
         <h2 class="titre">Cours : {{matiere.name}}</h2>
         <table>
             <thead>
-                <th> Formateur : {{matiere.formateurLastname}} {{matiere.formateurFirstname}}</th>
+                <th>
+                    Formateurs: {% for formateur in matiere.users %}
+                        {{formateur.firstname}} {{formateur.lastname}};
+                    {% endfor %}
+                </th>
             </thead>
             <tbody>
                 <tr>
-                    <td>Programmes</td>
-                </tr>
+                    <td>Programmes : </td>
+                </tr> 
                 {% for programme in matiere.programmes %}
-                <tr>
-                    <td>{{programme.name}}</td>
-                </tr>
+                    {% if programme.name == "" %}
+                    {% else %}
+                        <tr>
+                            <td>{{programme.name}}</td>
+                        </tr>
+                    {% endif %}
                 {% endfor %}
             </tbody>
         </table>

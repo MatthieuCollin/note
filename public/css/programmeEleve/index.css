@@ -1,5 +1,5 @@
 .container{
-  width: 100%;
+  width: 50%;
   font-weight: bold;
   height: 100%;
   display: flex;
@@ -8,9 +8,17 @@
   align-items: center;
 }
 
+.body{
+  padding: 1%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .box{
   background-color: rgba(197, 206, 216, 0.42);
-  width: 35%;
+  width: 50%;
   height: auto;
   border-radius: 30px 30px 30px 30px;
   display: flex;
