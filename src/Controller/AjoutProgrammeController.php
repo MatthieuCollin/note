@@ -17,6 +17,7 @@ class AjoutProgrammeController extends AbstractController
     public function index(ProgrammeRepository $programmeRepository): Response
     {
         $programmes = $programmeRepository->findAll();
+        $data = [];
         foreach($programmes as $programme){
             $data [] =[
                 'name' => $programme->getName(),
