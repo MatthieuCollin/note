@@ -45,7 +45,7 @@ class UserType extends AbstractType
             // looks for choices from this entity
             'class' => User::class,
             'mapped' =>true,
-            'label' => "Si l'utilisateur est un tuteur, lui assigné la personne qu'il supervise",
+            'label' => "Si l'utilisateur est un tuteur, lui assigner la personne qu'il supervise",
             'placeholder' => 'Veuillez choisir un élève',
             // uses the User.username property as the visible option string
             'choice_label' => 'lastname',
